@@ -40,6 +40,7 @@ class CardsContainer extends React.Component{
                     Recovered, 
                     Active
                 };
+
                 const allData = this.formatChartData(res);
                 this.data = {
                     actualData: newActualData,
@@ -55,12 +56,12 @@ class CardsContainer extends React.Component{
       }
       formatChartData(data){
           // FIX THIS ASAP
-       
-        const newArray = data
+    
+          const newArray = data
             .map(({City, CityCode, Country, CountryCode, Lat, Lon, Province , ...item}) => item)
-            .map(elem => elem || moment(elem.Date).format("MM-DD-YYYY"))
-        console.log(newArray)
-
+            .map(elem => moment(elem.Date).format("L"))
+            console.log(newArray);
+            return(newArray);
     }
     render(){
         return(
