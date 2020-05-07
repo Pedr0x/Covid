@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAGA,eAAgB;EACZ,OAAO,EAAE,EAAE;EACX,UAAU,ECQH,OAAO;;ADLlB,8BAA+B;EAC9B,OAAO,EAAE,EAAE",
+"sources": ["support-banner.scss","variables.scss"],
+"names": [],
+"file": "support-banner.css"
+}

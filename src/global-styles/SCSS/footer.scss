@@ -1,0 +1,13 @@
+@import "variables";
+
+.footer-container {
+	background: #ced4da;
+	padding: 2%;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+}
+
+.api-icons-container {
+	display: flex;
+	justify-content: space-evenly;
+}

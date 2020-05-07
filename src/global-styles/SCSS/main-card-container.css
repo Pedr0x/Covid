@@ -1,0 +1,25 @@
+.main-card-container {
+  display: grid;
+  background: #e9ecef;
+  padding: 2%; }
+
+.main-card-primary {
+  grid-template-columns: 2fr 1fr;
+  display: grid;
+  padding: 2% 0; }
+
+.main-card-graph-container {
+  background: #6c757d; }
+
+.main-card-data {
+  padding: 5%;
+  background: #f8f8f8;
+  margin: 2%; }
+
+.main-card-data-list {
+  line-height: 1.5; }
+
+.main-card-title {
+  text-align: center; }
+
+/*# sourceMappingURL=main-card-container.css.map */

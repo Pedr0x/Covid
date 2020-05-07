@@ -1,0 +1,12 @@
+@import "variables";
+
+.info-banner-container{
+  @include flex-row-align-space-around;
+  padding: 1%;
+  background: $gray-200;
+}
+
+.info-banner-item-label{
+    font-weight: 600;
+    
+}
