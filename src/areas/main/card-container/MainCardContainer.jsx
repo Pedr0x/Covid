@@ -1,4 +1,6 @@
 import React from 'react';
+import MainCardData from "./MainCardData";
+import MainCardGraph from "./MainCardGraph";
 
 const MainCardContainer = (props) =>{
     const {country, actualData, allData} = props.data;
@@ -12,18 +14,7 @@ const MainCardContainer = (props) =>{
             this is a graph
         </h3>
         </div>
-
-        <div className="main-card-data">
-            <h3 className="main-card-data-title"> this is the main data</h3>
-            <div className="main-card-data-list-container">
-                <ul className="main-card-data-list">
-                    <li> data</li>
-                    <li> data</li>
-                    <li> data</li>
-                    <li> data</li>
-                </ul>
-            </div>
-        </div>
+       <MainCardData data={actualData}/>
         </div>
     </div>
     )
