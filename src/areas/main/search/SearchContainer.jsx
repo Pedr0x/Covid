@@ -1,10 +1,10 @@
 import React from 'react';
 import SearchMainInput from './SearchMainInput';
 
-const SearchContainer = () =>{
+const SearchContainer = (props) =>{
     return(
     <div className="search-container">
-        <SearchMainInput/>
+        <SearchMainInput searhCalback={props.searchCalback}/>
     </div>
     )
 }
