@@ -13,7 +13,7 @@ const MainCardContainer = (props) =>{
         <div className="main-card-graph-container">
             <MainCardGraph data={allData}/>
         </div>
-       <MainCardData data={actualData}/>
+       <MainCardData  country={country} data={actualData}/>
         <NewsContainer country={country}/>
         </div>
     </div>

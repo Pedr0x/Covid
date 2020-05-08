@@ -14,30 +14,37 @@ class NewsContainer extends React.Component {
         this.getNewsData = this.getNewsData.bind(this)
     }
     componentDidMount(){
-        this.getNewsData();
+        this.getNewsData()
+        console.log(this.props.country)
     }
+    componentDidUpdate(){
+        console.log(this.props.country)
+    }
+    
     getNewsData(){
-        var url = 'http://newsapi.org/v2/everything?' +
-        `q=coronavirus+${this.props.country.replace(/\s/g, '')}&`+
+        const country = encodeURI(this.props.country);
+        console.log(country)
+        const url = 'http://newsapi.org/v2/everything?' +
+        `q=coronavirus+${country}&`+
         'from=2020-05-08&' +
         'sortBy=popularity&' +
         'apiKey=d9dec0e748f54b529c66312f71823af3';
 
-          fetch(url)
+        /*  fetch(url)
             .then(res => res.json())
             .then(res => this.newsData = res.articles)
             .then(res => console.log(this.newsData))
-            .catch(err => this.newsData = [])
+            .catch(err => this.newsData = [])*/
     }
         render(){
             return(
                 <div className="news-container">
-                    {this.newsData
+                  {/*   {this.newsData
                         ? this.newsData.map(elem => 
                             
                             <NewsItem data={elem} key={_.uniqueId()}/> )
                         : null
-                    }
+                    } */}
 
                 </div>
             )

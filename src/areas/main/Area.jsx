@@ -13,7 +13,7 @@ class Area extends React.Component{
         };
 
         this.data = {
-            country: "south-africa",
+            country: "South Africa",
             actualData: {
                 deaths: null,
                 recovered:null,
