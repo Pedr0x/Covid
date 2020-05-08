@@ -1,6 +1,7 @@
 import React from 'react';
 import MainCardData from "./MainCardData";
 import MainCardGraph from "./MainCardGraph";
+import NewsContainer from "./NewsContainer";
 
 const MainCardContainer = (props) =>{
     const {country, actualData, allData} = props.data;
@@ -13,6 +14,7 @@ const MainCardContainer = (props) =>{
             <MainCardGraph data={allData}/>
         </div>
        <MainCardData data={actualData}/>
+        <NewsContainer country={country}/>
         </div>
     </div>
     )

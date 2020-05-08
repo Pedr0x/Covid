@@ -1,0 +1,24 @@
+.news-container {
+  height: 600px;
+  overflow-y: scroll; }
+
+.news-img {
+  border-radius: 50%;
+  background-size: cover  !important;
+  background-repeat: no-repeat  !important;
+  background-position: center center !important;
+  width: 90%;
+  height: 100%; }
+
+.news-item-text {
+  line-height: 1.25; }
+
+.news-item-container {
+  display: grid;
+  padding: 2%;
+  border-radius: 5px;
+  grid-template-columns: 20% 1fr;
+  margin: 3% 2%;
+  background: white; }
+
+/*# sourceMappingURL=news.css.map */

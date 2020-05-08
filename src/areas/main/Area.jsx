@@ -29,9 +29,9 @@ class Area extends React.Component{
       componentDidMount(){
         this.getData()
       }
-      formatChartData(data){
+      formatChartData(value){
           // FIX THIS ASAP
-          const newArray = data
+          const newArray = value
             .map(({City, CityCode, Country, CountryCode, Lat, Lon, Province , ...item}) => item)
             const nArray= Array.from(newArray)
                 .forEach(elem => elem.Date = moment(elem.Date).format("L"))
