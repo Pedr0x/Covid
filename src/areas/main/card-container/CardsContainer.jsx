@@ -59,8 +59,11 @@ class CardsContainer extends React.Component{
     
           const newArray = data
             .map(({City, CityCode, Country, CountryCode, Lat, Lon, Province , ...item}) => item)
-            .map(elem => moment(elem.Date).format("L"))
+            const nArray= Array.from(newArray)
+                .forEach(elem => elem.Date = moment(elem.Date).format("L"))
+                
             console.log(newArray);
+
             return(newArray);
     }
     render(){
