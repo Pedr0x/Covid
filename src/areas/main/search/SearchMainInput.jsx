@@ -1,5 +1,6 @@
 import React from 'react';
-import Fuse from "fuse.js"
+import Fuse from "fuse.js";
+const _ = require('lodash');
 class SearchMainInput extends React.Component {
     constructor(props) {
         super(props);
@@ -11,13 +12,14 @@ class SearchMainInput extends React.Component {
             keys: [
               "Country",
               "ISO2",
-              "Slug"
             ]
           };
           this.searchValue = "";
+          this.searchResults = []
           this.getInputdata = this.getInputdata.bind(this);        
-          this.validateCountry = this.validateCountry.bind(this);        
-
+          this.validateCountry = this.validateCountry.bind(this);    
+          this.getSearchValue = this.getSearchValue.bind(this);        
+    
     }
 
     componentDidMount() { 
@@ -25,22 +27,30 @@ class SearchMainInput extends React.Component {
             .then(res => res.json())
             .then(res => {
                 this.countries = res;
-                console.log(this.countries);
             })
-        console.log(this.countries);
     }
 
     validateCountry(){
         const fuse = new Fuse(this.countries, this.options);
         const pattern = this.searchValue;
-        console.log( fuse.search(pattern))
+        this.searchResults =  fuse.search(pattern).slice(0,5);
+        console.log(this.searchResults);
+        this.setState({
+            upd:true
+        })
     }
 
     getInputdata(e){
-        e.target.value = this.searchValue
+        this.searchValue = e.target.value;
     }
+
+    getSearchValue(value){
+        console.log(value)
+    }
+
     render(){
         return(
+            <React.Fragment> 
             <div className="search-main-input-container">
                  <input  
                     placeholder="Search country" 
@@ -50,11 +60,29 @@ class SearchMainInput extends React.Component {
                 />
                 <button 
                     className="search-main-button"
-                    onClick={this.props.searchCalback}    
+                    onClick={this.validateCountry}    
                 >
                     Search
                 </button>
             </div>
+        <div className="search-res-container">
+            <div className="search-res-item">
+                { this.searchResults 
+                    ? this.searchResults.map(elem => 
+                            <div  
+                                key={_.uniqueId()} 
+                                className="search-res-item" 
+                                onClick={() => this.props.searchCallback(elem.item.Country)}
+                            > 
+                                {`${elem.item.Country}`}
+                            </div>
+                        )
+                    : null
+            }
+            </div>
+        </div>
+            </React.Fragment> 
+
         )
     }
 }

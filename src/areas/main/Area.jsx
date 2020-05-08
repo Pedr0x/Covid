@@ -71,13 +71,18 @@ class Area extends React.Component{
     }
 
     searchCountry(data){
-
+        this.data.country = data;
+        this.getData();
+        console.log("upd");
+        this.setState({
+            upd:true
+        })
     }
 
     render(){
         return(
             <div className="Area">
-                <SearchContainer/>
+                <SearchContainer searchCallback={this.searchCountry}/>
                 <CardsContainer data={this.data}/>
             </div>
             )
