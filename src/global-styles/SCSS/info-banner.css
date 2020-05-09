@@ -1,0 +1,12 @@
+.info-banner-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1%;
+  background: #e9ecef; }
+
+.info-banner-item-label {
+  font-weight: 600; }
+
+/*# sourceMappingURL=info-banner.css.map */

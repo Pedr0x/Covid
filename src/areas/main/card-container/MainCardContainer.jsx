@@ -1,7 +1,7 @@
 import React from 'react';
-import MainCardData from "./MainCardData";
+import MainCardData from "./Data/MainCardData";
 import MainCardGraph from "./MainCardGraph";
-import NewsContainer from "./NewsContainer";
+import NewsContainer from "./News/NewsContainer";
 
 const MainCardContainer = (props) =>{
     const {country, actualData, allData} = props.data;

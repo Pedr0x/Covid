@@ -3,6 +3,8 @@
 .front-container {
 	height: 100vh;
 	display: grid;
+	background: $gray-200;
+
 	grid-template-columns: 2fr 1fr;
 }
 
@@ -14,5 +16,51 @@
 }
 .front-title {
     padding: 1%;
-	background: $gray-200;
+}
+
+
+.info-card-super{
+	align-self: center;
+
+}
+
+.info-card-container{
+	padding: 5%;
+	margin: 5%;
+}
+
+.info-card-container{
+	font-size: $Small-Big;
+	background: $white;
+}
+
+.info-card-title{
+	font-weight: 600;
+	padding: 2%;
+}
+
+
+.info-card-item-container {
+	padding: 3.5% 3%;
+	@include flex-row-align-space-between;
+}
+
+.info-card-item-container:nth-child(2) .info-card-item-label{
+	background: $red;
+}
+
+
+.info-card-item-container:nth-child(3) .info-card-item-label{
+	background: $orange;
+	background: $yellow;
+}
+
+
+.info-card-item-container:nth-child(4) .info-card-item-label{
+	background: $blue;
+	//background: $green;
+}
+
+.info-card-item-label{
+	padding: 2%;
 }
