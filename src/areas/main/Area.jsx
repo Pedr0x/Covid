@@ -65,14 +65,12 @@ class Area extends React.Component{
                 this.setState({
                     upd: 1
                 })
-                console.log(this.state)
             })
     }
 
     searchCountry(data){
         this.data.country = data;
         this.getData();
-        console.log("upd");
         this.setState({
             upd:true
         })

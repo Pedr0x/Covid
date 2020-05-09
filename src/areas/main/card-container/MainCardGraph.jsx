@@ -18,6 +18,7 @@ class  MainCardGraph extends React.Component {
 
     }
 
+   
     onSelect(date){
       //this.startDate = value;
       const startDate = moment(date).format("L")

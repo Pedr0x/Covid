@@ -19,7 +19,9 @@ class SearchMainInput extends React.Component {
           this.getInputdata = this.getInputdata.bind(this);        
           this.validateCountry = this.validateCountry.bind(this);    
           this.getSearchValue = this.getSearchValue.bind(this);        
-    
+
+          this.normalize = this.normalize.bind(this);        
+
     }
 
     componentDidMount() { 
@@ -48,7 +50,21 @@ class SearchMainInput extends React.Component {
         console.log(value)
     }
 
+    normalize(data){
+        this.props.searchCallback(data);
+        this.searchResults= [];
+        this.setState({
+            upd:1
+        });
+        console.log("normalize")
+    }
+
     render(){
+        const activeContainer = 
+            this.searchResults 
+            ? "search-res-container-super_active"
+            : "";
+            console.log(activeContainer)
         return(
             <React.Fragment> 
             <div className="search-main-input-container">
@@ -62,17 +78,17 @@ class SearchMainInput extends React.Component {
                     className="search-main-button"
                     onClick={this.validateCountry}    
                 >
-                    Search
+                    search
                 </button>
             </div>
-        <div className="search-res-container">
-            <div className="search-res-item">
+        <div className={`search-res-container-super ${activeContainer}`} >
+            <div className="search-res-item-container">
                 { this.searchResults 
                     ? this.searchResults.map(elem => 
                             <div  
                                 key={_.uniqueId()} 
-                                className="search-res-item" 
-                                onClick={() => this.props.searchCallback(elem.item.Country)}
+                                className="search-res-item"
+                                onClick={() => this.normalize(elem.item.Country)}
                             > 
                                 {`${elem.item.Country}`}
                             </div>
@@ -81,6 +97,7 @@ class SearchMainInput extends React.Component {
             }
             </div>
         </div>
+
             </React.Fragment> 
 
         )

@@ -8,7 +8,8 @@ class NewsContainer extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            data : []
+            data : [],
+            upd:1
         }
         this.newsData = []
         this.getNewsData = this.getNewsData.bind(this)
@@ -17,34 +18,37 @@ class NewsContainer extends React.Component {
         this.getNewsData()
         console.log(this.props.country)
     }
+    
     componentDidUpdate(){
-        console.log(this.props.country)
+        this.getNewsData()
+        console.log("asdadasdasd")
     }
+  
     
     getNewsData(){
         const country = encodeURI(this.props.country);
-        console.log(country)
         const url = 'http://newsapi.org/v2/everything?' +
         `q=coronavirus+${country}&`+
         'from=2020-05-08&' +
         'sortBy=popularity&' +
         'apiKey=d9dec0e748f54b529c66312f71823af3';
-
+        console.log(url)
          fetch(url)
             .then(res => res.json())
             .then(res => this.newsData = res.articles)
-            .then(res => console.log(this.newsData))
-            .catch(err => this.newsData = [])
-    }
+            .then(res => this.setState({
+                data:res
+            }))
+            .catch(err => this.newsData = []);
+        }
         render(){
             return(
                 <div className="news-container">
                     <h3 className="news-container-title"> 
-                    { `Coronirus news in ${this.props.country}`}
+                     Coronavirus news in {this.props.country}
                     </h3>
-                     {this.newsData
-                        ? this.newsData.map(elem => 
-                            
+                     {this.state.data
+                        ? this.state.data.map(elem => 
                             <NewsItem data={elem} key={_.uniqueId()}/> )
                         : null
                     }}

@@ -9,11 +9,13 @@
   padding: 1%;
   background: #f4f4f4; }
 
+.search-res-container-super {
+  position: absolute;
+  width: 100%; }
+
 .search-res-item-container {
-  /* position: absolute; */
   width: 100%;
   align-content: center;
-  background: black;
   align-items: center;
   display: grid;
   justify-items: center;
@@ -28,10 +30,10 @@
   transition: 0.2s; }
 
 .search-res-item:nth-child(2n) {
-  background: black; }
+  background: #dee2e6; }
 
 .search-res-item:hover {
-  background: blue;
+  background: #007bff;
   transition: 0.2s; }
 
 /*# sourceMappingURL=search-main-input.css.map */
