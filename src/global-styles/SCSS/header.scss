@@ -1,5 +1,9 @@
 @import "variables";
 
-.header-container{
-    background: $gray-400 !important;
+
+.header-container {
+	background: $black;
+	color: $white;
+    font-weight: 600;
+    font-size: $Small-Big;
 }

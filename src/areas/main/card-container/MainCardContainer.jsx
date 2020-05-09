@@ -10,9 +10,7 @@ const MainCardContainer = (props) =>{
     <div className="main-card-container">
         <h3 className="main-card-title">{country}</h3>
         <div className="main-card-primary"> 
-        <div className="main-card-graph-container">
-            <MainCardGraph data={allData}/>
-        </div>
+        <MainCardGraph data={allData}/>
        <MainCardData  country={country} data={actualData}/>
         <NewsContainer country={country}/>
         </div>

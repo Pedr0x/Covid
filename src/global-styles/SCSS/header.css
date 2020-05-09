@@ -1,4 +1,7 @@
 .header-container {
-  background: #ced4da !important; }
+  background: #000;
+  color: #ffffff;
+  font-weight: 600;
+  font-size: calc(0.75rem + 1vw); }
 
 /*# sourceMappingURL=header.css.map */

@@ -9,4 +9,29 @@
   padding: 1%;
   background: #f4f4f4; }
 
+.search-res-item-container {
+  /* position: absolute; */
+  width: 100%;
+  align-content: center;
+  background: black;
+  align-items: center;
+  display: grid;
+  justify-items: center;
+  /* transform: translateY(45px); */ }
+
+.search-res-item {
+  padding: 1%;
+  text-align: center;
+  width: 50%;
+  background: #eaeaea;
+  cursor: pointer;
+  transition: 0.2s; }
+
+.search-res-item:nth-child(2n) {
+  background: black; }
+
+.search-res-item:hover {
+  background: blue;
+  transition: 0.2s; }
+
 /*# sourceMappingURL=search-main-input.css.map */

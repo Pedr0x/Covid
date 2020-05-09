@@ -7,7 +7,6 @@ import moment from 'moment';
 class Area extends React.Component{
     constructor(props) {
         super(props);
-        // No llames this.setState() aquí!
         this.state = { 
             upd: true
         };

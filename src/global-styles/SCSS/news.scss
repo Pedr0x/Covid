@@ -5,6 +5,10 @@
 .news-container{
     height: 600px;
     overflow-y: scroll;
+    margin: 2%;
+    padding: 4%;
+    background: $white;
+
 }
 
 .news-img {
@@ -14,6 +18,11 @@
     height: 100%;
 
 }
+.news-container-title {
+	@include area-subtitle;
+
+}
+
 .news-item-text {
 	line-height: 1.25;
 	/* display: flex; */
@@ -24,7 +33,8 @@
     padding: 2%;
     border-radius: $primary-border-radius;
 	grid-template-columns: 20% 1fr;
-	margin: 3% 2%;
+    margin: 3% 2%;
+    margin: 5%;
 	background: white;
 }
 

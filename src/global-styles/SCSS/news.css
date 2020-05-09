@@ -1,6 +1,9 @@
 .news-container {
   height: 600px;
-  overflow-y: scroll; }
+  overflow-y: scroll;
+  margin: 2%;
+  padding: 4%;
+  background: #ffffff; }
 
 .news-img {
   border-radius: 50%;
@@ -9,6 +12,10 @@
   background-position: center center !important;
   width: 90%;
   height: 100%; }
+
+.news-container-title {
+  font-weight: 600;
+  padding: 2%; }
 
 .news-item-text {
   line-height: 1.25;
@@ -21,6 +28,7 @@
   border-radius: 5px;
   grid-template-columns: 20% 1fr;
   margin: 3% 2%;
+  margin: 5%;
   background: white; }
 
 .news-item-title {

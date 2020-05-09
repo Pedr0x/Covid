@@ -4,7 +4,7 @@ import Footer from "./footer/Footer";
 import Area from "./main/Area";
 import SupportBanner from "./support-banner/SupportBanner";
 import Front from "./front/Front";
-import InfoBanner from "./info-banner/InfoBanner";
+//import InfoBanner from "./info-banner/InfoBanner";
 
 //import GlobalInfo from "./areas/global-info/GlobalInfo";
 //<GlobalInfo/>
@@ -15,7 +15,6 @@ const Main = () =>{
     <div className="main-container-super">
         <Header/>
         <Front/>
-        <InfoBanner/>
         <Area/>
        <SupportBanner/>
         <Footer/>

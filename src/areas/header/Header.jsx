@@ -4,9 +4,12 @@ const Header = () =>{
     return(
     <div className="header-container">
         <header> 
-            <h4>
+            <div className="header-item">
+            <h4 className="header-title_main">
                 covid tracker
             </h4>
+            </div>
+
             </header>
     </div>
     )

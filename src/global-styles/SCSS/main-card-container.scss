@@ -13,11 +13,18 @@
 	justify-items: center;
 }
 
-
+//### graph
 .main-card-graph-container{
+	
+}
+.main-card-graph-container-super{
+	padding: 5% 5% 2%;
 	grid-column: 1/3;
+		background: white;
 
-;}
+}
+
+
 // ### main card data
 
 .main-card-data {
@@ -45,12 +52,18 @@
 }
 
 .main-card-data-list-item {
-	padding: 2% 2%;
-	@include flex-row-align-space-between;
+	padding: 5% 4%;
+		@include flex-row-align-space-between;
 }
 	
 .main-card-list-item-label {
 		padding: 2%;
+	}
+
+	.main-card-data-list-container {
+		padding: 2% 5%;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
 	}
 
 .main-card-data-list-item:nth-child(1) .main-card-list-item-label{
