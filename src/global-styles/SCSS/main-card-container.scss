@@ -14,14 +14,29 @@
 }
 
 //### graph
-.main-card-graph-container{
-	
-}
+
 .main-card-graph-container-super{
 	padding: 5% 5% 2%;
 	grid-column: 1/3;
-		background: white;
+	background: white;
+}
 
+.datepicker-container {
+	display: flex;
+	flex-direction: column;
+}
+
+.react-datepicker__input-container input {
+	background: #e9ecef;
+	padding: 4%;
+	font-size: 16px;
+}
+
+.date-filter-container {
+	/* background: black; */
+	display: flex;
+	justify-content: space-around;
+	padding: 3% 2% 1%;
 }
 
 

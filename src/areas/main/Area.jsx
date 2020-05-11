@@ -84,15 +84,13 @@ class Area extends React.Component{
             const getCardData = async () => {
                 const infectedPopulationRequest = await fetch(`https://restcountries.eu/rest/v2/name/${country}`)
                 .then(res => res.json() )
-                .then(res =>  ((Active  / res[0].population)* 10000).toFixed(2));
+                .then(res =>  ((Active  / res[0].population)* 100000).toFixed(2));
                 return(infectedPopulationRequest)
-             
             }
 
              const getNewsData = async () => {
                 const countryNews = await fetch(newsEndpoint).then(res => res.json()).then(res =>res.articles);
                 return(countryNews)
-                //this.data.newsData = countryNews;
             }
 
             //await Promise.all([getCardData(), getNewsData()]);
