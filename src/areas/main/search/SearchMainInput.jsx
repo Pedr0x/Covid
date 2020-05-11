@@ -1,6 +1,8 @@
 import React from 'react';
 import Fuse from "fuse.js";
-const _ = require('lodash');
+import SearchInput from "./SearchInput";
+import SearchResContainer from "./SearchResContainer";
+
 class SearchMainInput extends React.Component {
     constructor(props) {
         super(props);
@@ -19,9 +21,7 @@ class SearchMainInput extends React.Component {
           this.getInputdata = this.getInputdata.bind(this);        
           this.validateCountry = this.validateCountry.bind(this);    
           this.getSearchValue = this.getSearchValue.bind(this);        
-
           this.normalize = this.normalize.bind(this);        
-
     }
 
     componentDidMount() { 
@@ -56,52 +56,34 @@ class SearchMainInput extends React.Component {
         this.setState({
             upd:1
         });
-        console.log("normalize")
     }
-
-    render(){
-        const activeContainer = 
-            this.searchResults 
-            ? "search-res-container-super_active"
-            : "";
-            console.log(activeContainer)
-        return(
-            <React.Fragment> 
-            <div className="search-main-input-container">
-                 <input  
-                    placeholder="Search country" 
-                    className="search-main-input" 
-                    type="text"
-                    onChange={this.getInputdata}
+        render(){
+            const activeContainer = 
+                this.searchResults 
+                    ? "search-res-container-super_active"
+                    : "";
+            console.log(activeContainer);
+            return(
+                <React.Fragment> 
+                    <SearchInput
+                        validateCountry={this.validateCountry}
+                        getInputdata={this.getInputdata}
+                    />
+                <SearchResContainer 
+                    callback={this.normalize}
+                    activeContainer={activeContainer}
+                    data={this.searchResults}
                 />
-                <button 
-                    className="search-main-button"
-                    onClick={this.validateCountry}    
-                >
-                    search
-                </button>
-            </div>
-        <div className={`search-res-container-super ${activeContainer}`} >
-            <div className="search-res-item-container">
-                { this.searchResults 
-                    ? this.searchResults.map(elem => 
-                            <div  
-                                key={_.uniqueId()} 
-                                className="search-res-item"
-                                onClick={() => this.normalize(elem.item.Country)}
-                            > 
-                                {`${elem.item.Country}`}
-                            </div>
-                        )
-                    : null
-            }
-            </div>
-        </div>
-
             </React.Fragment> 
-
         )
+        }
     }
-}
 
 export default SearchMainInput
+/* 
+
+<div  
+className="search-res-item"
+> 
+{`${elem.item.Country}`}
+</div> */

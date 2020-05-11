@@ -4,40 +4,53 @@ import InfoCardItem from "./InfoCardItem";
 class InfoCard extends React.Component {
     constructor(props) {
         super(props);
-        // No llames this.setState() aquí!
         this.state = { 
-            recovered: "loading",
-            confirmed:"loading",
-            deaths: null
+            hasData: false
         };
-      }
-      componentDidMount(){
+        this.globalData = {
+            recovered:null,
+            deaths:null,
+            confirmed:null
+        }
+    }
+    componentDidMount(){
         const API_LINK = "https://api.covid19api.com/summary";
-
-          fetch(API_LINK)
+        fetch(API_LINK)
             .then(res => res.json())
             .then(res => {
                 const {
-                    TotalRecovered,
-                     TotalDeaths, 
-                     TotalConfirmed
+                    TotalRecovered: recovered,
+                     TotalDeaths: deaths, 
+                     TotalConfirmed: confirmed
                 } = res.Global;
 
+                this.globalData = {
+                    recovered,
+                    deaths,
+                    confirmed
+                }
                 this.setState({
-                    recovered: TotalRecovered,
-                    deaths: TotalDeaths,
-                    confirmed: TotalConfirmed
-                })
-            })
+                    hasData: true
+                });
+            });
       }
+
     render(){
         const {recovered, confirmed, deaths} = this.state
         return(
             <div className="info-card-container">
                 <h3 className="info-card-title"> Global Data</h3>
-                <InfoCardItem label="Deaths" number={deaths}/>
-                <InfoCardItem label="Confirmed" number={confirmed}/>
-                <InfoCardItem label="Recovered" number={recovered}/>
+                {
+                    this.state.hasData 
+                     ? <React.Fragment>
+                            <InfoCardItem label="Deaths" number={deaths}/>
+                            <InfoCardItem label="Confirmed" number={confirmed}/>
+                            <InfoCardItem label="Recovered" number={recovered}/>
+                     </React.Fragment>
+                     : <h2 className="info-card-loading-subtitle">
+                         Loading
+                     </h2>
+                }
             </div>
         )
     }

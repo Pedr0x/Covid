@@ -8,7 +8,7 @@ class CardsContainer extends React.Component{
             <div className="cards-container">
                 <MainCardContainer data={this.props.data}/>
             </div>
-            )
+        )
     }  
 }
 
