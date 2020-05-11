@@ -7,16 +7,17 @@ class SearchMainInput extends React.Component {
     constructor(props) {
         super(props);
         this.state = { 
-            upd: true
+            upd: true,
+            searchValue: ""
         };
         this.countries = [];
          this.options = {
             keys: [
               "Country",
               "ISO2",
-            ]
+            ],
+            minMatchCharLength: 1
           };
-          this.searchValue = "";
           this.searchResults = []
           this.getInputdata = this.getInputdata.bind(this);        
           this.validateCountry = this.validateCountry.bind(this);    
@@ -33,7 +34,7 @@ class SearchMainInput extends React.Component {
 
     validateCountry(){
         const fuse = new Fuse(this.countries, this.options);
-        const pattern = this.searchValue;
+        const pattern = this.state.searchValue;
         this.searchResults =  fuse.search(pattern).slice(0,5);
         console.log(this.searchResults);
         this.setState({
@@ -42,7 +43,10 @@ class SearchMainInput extends React.Component {
     }
 
     getInputdata(e){
-        this.searchValue = e.target.value;
+        this.setState({
+            searchValue: e.target.value
+        });
+        this.validateCountry()
     }
 
     normalize(data){
@@ -64,11 +68,11 @@ class SearchMainInput extends React.Component {
                         validateCountry={this.validateCountry}
                         getInputdata={this.getInputdata}
                     />
-                <SearchResContainer 
-                    callback={this.normalize}
-                    activeContainer={activeContainer}
-                    data={this.searchResults}
-                />
+                    <SearchResContainer 
+                        callback={this.normalize}
+                        activeContainer={activeContainer}
+                        data={this.searchResults}
+                    />
             </div> 
         )
         }

@@ -9,12 +9,6 @@ const SearchInput = (props) => {
                 type="text"
                 onChange={props.getInputdata}
             />
-        <button 
-            className="search-main-button"
-            onClick={props.validateCountry}    
-        >
-            search
-        </button>
     </div>
     )
 };
