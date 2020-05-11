@@ -36,9 +36,9 @@ class InfoCard extends React.Component {
       }
 
     render(){
-        const {recovered, confirmed, deaths} = this.state
+        const {recovered, confirmed, deaths} = this.globalData;
         return(
-            <div className="info-card-container">
+            <div className="info-card-container" onClick={() => console.log(this.globalData)}>
                 <h3 className="info-card-title"> Global Data</h3>
                 {
                     this.state.hasData 

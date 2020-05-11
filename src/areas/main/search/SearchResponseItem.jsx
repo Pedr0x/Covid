@@ -4,9 +4,9 @@ const SearchResItem = (props) => {
     return(
        <div 
         className="search-res-item" 
-        onClick={() => props.callback(props.item.Country)}
+        onClick={() => props.callback(props.country)}
         >
-            {`${props.item.Country}`}
+            {`${props.country}`}
        </div>
     )
 };

@@ -747,7 +747,8 @@ template {
 
 .main-card-data-title {
   font-weight: 600;
-  padding: 2%; }
+  padding: 2%;
+  font-size: calc(0.75rem + 1vw); }
 
 .main-card-data-list-item {
   padding: 5% 4%;
@@ -824,9 +825,10 @@ template {
   font-size: calc(0.75rem + 1vw); }
 
 .footer-container {
-  background: #ced4da;
+  background: #000;
   padding: 2%;
   display: grid;
+  color: #ffffff;
   grid-template-columns: 1fr 2fr; }
 
 .api-icons-container {
@@ -898,8 +900,7 @@ template {
   height: 600px;
   overflow-y: scroll;
   margin: 2%;
-  padding: 4%;
-  background: #ffffff; }
+  padding: 4%; }
 
 .news-img {
   border-radius: 50%;
@@ -911,7 +912,9 @@ template {
 
 .news-container-title {
   font-weight: 600;
-  padding: 2%; }
+  padding: 2%;
+  font-size: calc(0.75rem + 1vw);
+  font-size: calc(0.75rem + 1vw); }
 
 .news-item-text {
   line-height: 1.25;

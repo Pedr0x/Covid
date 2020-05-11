@@ -20,7 +20,6 @@ class SearchMainInput extends React.Component {
           this.searchResults = []
           this.getInputdata = this.getInputdata.bind(this);        
           this.validateCountry = this.validateCountry.bind(this);    
-          this.getSearchValue = this.getSearchValue.bind(this);        
           this.normalize = this.normalize.bind(this);        
     }
 
@@ -46,10 +45,6 @@ class SearchMainInput extends React.Component {
         this.searchValue = e.target.value;
     }
 
-    getSearchValue(value){
-        console.log(value)
-    }
-
     normalize(data){
         this.props.searchCallback(data);
         this.searchResults= [];
@@ -64,7 +59,7 @@ class SearchMainInput extends React.Component {
                     : "";
             console.log(activeContainer);
             return(
-                <React.Fragment> 
+                <div onClick={() => console.log(this.countries)}> 
                     <SearchInput
                         validateCountry={this.validateCountry}
                         getInputdata={this.getInputdata}
@@ -74,7 +69,7 @@ class SearchMainInput extends React.Component {
                     activeContainer={activeContainer}
                     data={this.searchResults}
                 />
-            </React.Fragment> 
+            </div> 
         )
         }
     }

@@ -30,7 +30,8 @@
 
 .main-card-data-title {
   font-weight: 600;
-  padding: 2%; }
+  padding: 2%;
+  font-size: calc(0.75rem + 1vw); }
 
 .main-card-data-list-item {
   padding: 5% 4%;

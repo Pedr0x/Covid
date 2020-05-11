@@ -43,7 +43,7 @@ class Area extends React.Component{
         const API_LINK = `https://api.covid19api.com/dayone/country/${this.data.country}`;
         //const response = await fetch(API_LINK).json();
         const getCovidData = async () => {
-           
+
             const response = await fetch(API_LINK).then(res => res.json());
             const {
                 Deaths,
@@ -58,19 +58,15 @@ class Area extends React.Component{
                     Active
                 };
                 const allData = this.formatChartData(response);
-                        this.data = {
-                            actualData: newActualData,
-                            country: Country,
-                            allData
-                        };
-                    this.getApisData()
+                this.data = {
+                    actualData: newActualData,
+                    country: Country,
+                    allData
+                };
+                this.getApisData()
                     }
-
                     getCovidData()
-                        .then(x => console.log("worked2"))
-                        .then(this.setState({
-                            upd:1
-                        }));
+                        .then(res => console.log("updd"))
     }
 
         getApisData(){
@@ -83,14 +79,14 @@ class Area extends React.Component{
             `q=coronavirus+${country}&`+
             'from=2020-05-08&' +
             'sortBy=popularity&' +
-            'apiKey=d9dec0e748f54b529c66312f71823af3';
+            'apiKey=e90151a117284afab2e332a31e55bd7a';
 
             const getCardData = async () => {
                 const infectedPopulationRequest = await fetch(`https://restcountries.eu/rest/v2/name/${country}`)
                 .then(res => res.json() )
-                .then(res =>  Active / (res[0].population * 1000).toFixed(6));
+                .then(res =>  ((Active  / res[0].population)* 10000).toFixed(2));
                 return(infectedPopulationRequest)
-                //this.data.infectedPopulation = infectedPopulation;
+             
             }
 
              const getNewsData = async () => {
@@ -99,14 +95,14 @@ class Area extends React.Component{
                 //this.data.newsData = countryNews;
             }
 
-            await Promise.all([getCardData(), getNewsData()]);
-            const [infectedPopulation, newsData] = await Promise.all([getCardData(), getNewsData()]);
-
-            this.data.actualData = {
-                infectedPopulation,
-            }
+            //await Promise.all([getCardData(), getNewsData()]);
+            const [infectedPopulation, newsData] = await Promise.all([getCardData(), getNewsData()])
+            this.data.actualData.infectedPopulation = infectedPopulation;
             this.data.newsData = newsData;
             console.log(this.data);
+            this.setState({
+                upd:1
+            });
         }
         getAsyncApiData();
 }

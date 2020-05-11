@@ -12,7 +12,8 @@ const SearchResContainer = (props) => {
             {props.data.map(elem => 
                 <SearchResItem
                     key={_.uniqueId()}
-                    callback={props.callback} 
+                    callback={props.callback}
+                    country={elem.item.Country}
                 />
             )
         }

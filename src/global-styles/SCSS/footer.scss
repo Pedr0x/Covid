@@ -1,9 +1,10 @@
 @import "variables";
 
 .footer-container {
-	background: #ced4da;
+	background: $black;
 	padding: 2%;
 	display: grid;
+	color: $white;
 	grid-template-columns: 1fr 2fr;
 }
 

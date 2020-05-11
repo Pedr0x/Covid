@@ -7,7 +7,6 @@
     overflow-y: scroll;
     margin: 2%;
     padding: 4%;
-    background: $white;
 
 }
 
@@ -20,6 +19,7 @@
 }
 .news-container-title {
 	@include area-subtitle;
+	font-size: $Small-Big;
 
 }
 

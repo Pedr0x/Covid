@@ -2,8 +2,7 @@
   height: 600px;
   overflow-y: scroll;
   margin: 2%;
-  padding: 4%;
-  background: #ffffff; }
+  padding: 4%; }
 
 .news-img {
   border-radius: 50%;
@@ -15,7 +14,9 @@
 
 .news-container-title {
   font-weight: 600;
-  padding: 2%; }
+  padding: 2%;
+  font-size: calc(0.75rem + 1vw);
+  font-size: calc(0.75rem + 1vw); }
 
 .news-item-text {
   line-height: 1.25;

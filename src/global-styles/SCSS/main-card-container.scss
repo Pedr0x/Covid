@@ -64,6 +64,8 @@
 		padding: 2% 5%;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		//display: flex;
+		//flex-direction: column;
 	}
 
 .main-card-data-list-item:nth-child(1) .main-card-list-item-label{
