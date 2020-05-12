@@ -48,4 +48,8 @@
 .info-card-item-label {
   padding: 2%; }
 
+@media (max-width: 600px) {
+  .front-container {
+    grid-template-columns: auto; } }
+
 /*# sourceMappingURL=front.css.map */

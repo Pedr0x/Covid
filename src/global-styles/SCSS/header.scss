@@ -1,9 +1,24 @@
 @import "variables";
 
-
 .header-container {
 	background: $black;
-	color: $white;
     font-weight: 600;
+	color: $white;   
+
     font-size: $Small-Big;
+
+}
+
+.header-item-primary{
+    flex:2;
+}
+
+
+.header-items-secondary{
+    flex:1;
+    @include flex-row-align-space-between;
+}
+
+header{
+    @include flex-row-align-space-between;
 }

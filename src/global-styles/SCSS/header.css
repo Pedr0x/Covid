@@ -1,7 +1,23 @@
 .header-container {
   background: #000;
-  color: #ffffff;
   font-weight: 600;
+  color: #ffffff;
   font-size: calc(0.75rem + 1vw); }
+
+.header-item-primary {
+  flex: 2; }
+
+.header-items-secondary {
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; }
+
+header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; }
 
 /*# sourceMappingURL=header.css.map */

@@ -32,6 +32,10 @@ class Area extends React.Component{
         this.getData();
       }
 
+      componentDidUpdate(){
+          console.count("upd")
+      }
+
       formatChartData(value){
           // FIX THIS ASAP
           const newArray = value
@@ -76,7 +80,6 @@ class Area extends React.Component{
             //let {infectedPopulation, Active} = this.data.actualData;
             const newsEndpoint = 'http://newsapi.org/v2/everything?' +
             `q=coronavirus+${country}&`+
-            'from=2020-05-08&' +
             'sortBy=popularity&' +
             'apiKey=e90151a117284afab2e332a31e55bd7a';
 
@@ -88,11 +91,11 @@ class Area extends React.Component{
             }
 
              const getNewsData = async () => {
-                const countryNews = await fetch(newsEndpoint).then(res => res.json()).then(res =>res.articles);
+                const countryNews = await fetch(newsEndpoint)
+                    .then(res => res.json())
+                    .then(res =>res.articles);
                 return(countryNews)
             }
-
-            //await Promise.all([getCardData(), getNewsData()]);
             const [infectedPopulation, newsData] = await Promise.all([getCardData(), getNewsData()])
             this.data.actualData.infectedPopulation = infectedPopulation;
             this.data.newsData = newsData;
@@ -105,19 +108,15 @@ class Area extends React.Component{
     searchCountry(data){
         this.data.country = data;
         this.getData();
-       
     }
 
     render(){
         return(
             <div className="Area">
-                <SearchContainer searchCallback={this.searchCountry}/>
+                <SearchContainer 
+                    searchCallback={this.searchCountry}
+                />
                 <CardsContainer data={this.data}/>
-                    <button onClick={() => this.setState({
-                        upd:1
-                    })}>
-                        state
-                </button>
             </div>
             )
     }

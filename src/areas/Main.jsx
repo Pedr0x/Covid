@@ -2,7 +2,7 @@ import React from 'react';
 import Header from "./header/Header";
 import Footer from "./footer/Footer";
 import Area from "./main/Area";
-import SupportBanner from "./support-banner/SupportBanner";
+//import SupportBanner from "./support-banner/SupportBanner";
 import Front from "./front/Front";
 //import InfoBanner from "./info-banner/InfoBanner";
 
@@ -16,7 +16,6 @@ const Main = () =>{
         <Header/>
         <Front/>
         <Area/>
-       <SupportBanner/>
         <Footer/>
     </div>
     )
