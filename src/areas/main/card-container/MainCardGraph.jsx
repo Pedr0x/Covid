@@ -11,7 +11,9 @@ class  MainCardGraph extends React.Component {
         upd : 1
 	  }
 	  this.today = moment(new Date()).format("L");
+	  this.originalStartDate = null
 	  this.startDate = null;
+	  this.originalEndDate = null;
 	  this.endDate = moment(new Date()).format("L");
 	  this.newDates = null;
       this.selectDate = this.selectDate.bind(this);
@@ -51,14 +53,16 @@ class  MainCardGraph extends React.Component {
 	}
 
     selectDate(){
+		const {data} = this.props;
       if (this.newDates == null){
-        return this.formatDate(this.props.data)
+			const formattedDates = this.formatDate(this.props.data)
+		  this.originalStartDate = data !== undefined ? data[0].Date : this.today;
+		  this.originalEndDate = data !== undefined ? data[data.length - 1].Date : this.today;
+		return formattedDates;
       } else {
-
 		  console.log(this.newDates);
 		  console.log(this.formatDate(this.newDates));
-
-        return this.newDates
+          return this.newDates
       }
 	}
 	
@@ -71,12 +75,13 @@ class  MainCardGraph extends React.Component {
 	  const firstDayFormatted = firstDay ?  moment(firstDay).format("L") : this.today;
 	  const endDay = new Date();
 	  const endDayFormatted = endDay ? moment(endDay).format("L") : this.today;
+	  
       return (
         <div className="main-card-graph-container-super"> 
             <Graph data={arr}/>
 			<div className="date-filter-container">
 				<div className="datepicker-container"> 
-					<h4 className="datepicker-title"> Start Date</h4>
+					<h4 className="datepicker-title"> Chart Start Date</h4>
 					<DatePicker
 						minDate={firstDay}
 						placeholderText={ firstDayFormatted}
@@ -85,7 +90,7 @@ class  MainCardGraph extends React.Component {
 					/>
 				</div>
 			<div className="datepicker-container"> 
-				<h4 className="datepicker-title"> End Date</h4>
+				<h4 className="datepicker-title"> Chart End Date</h4>
 				<DatePicker
 					minDate={this.startDate}
 					placeholderText={endDayFormatted}
@@ -93,8 +98,19 @@ class  MainCardGraph extends React.Component {
 					onSelect={(date) =>this.onSelectEndDate(date)}
 				/>
 				</div>
+				<div className="graph-info">
+					<div className="graph-info-item">
+						<h5 className="graph-info-title">
+							First Known Case
+						</h5>
+						<h5 className="graph-info-data">
+							{this.originalStartDate}
+						</h5>
+					</div>
+					
           	</div>
         </div>
+		</div>
       );
     } 
   };

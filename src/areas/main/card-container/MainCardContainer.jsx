@@ -1,6 +1,6 @@
 import React from 'react';
 import MainCardData from "./Data/MainCardData";
-import MainCardGraph from "./MainCardGraph";
+import MainCardGraph from "./Graph/MainCardGraph";
 import NewsContainer from "./News/NewsContainer";
 
 const MainCardContainer = (props) =>{

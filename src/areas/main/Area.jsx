@@ -43,7 +43,6 @@ class Area extends React.Component{
         const API_LINK = `https://api.covid19api.com/dayone/country/${this.data.country}`;
         //const response = await fetch(API_LINK).json();
         const getCovidData = async () => {
-
             const response = await fetch(API_LINK).then(res => res.json());
             const {
                 Deaths,
@@ -97,7 +96,6 @@ class Area extends React.Component{
             const [infectedPopulation, newsData] = await Promise.all([getCardData(), getNewsData()])
             this.data.actualData.infectedPopulation = infectedPopulation;
             this.data.newsData = newsData;
-            console.log(this.data);
             this.setState({
                 upd:1
             });
@@ -107,10 +105,9 @@ class Area extends React.Component{
     searchCountry(data){
         this.data.country = data;
         this.getData();
-        this.setState({
-            upd:true
-        })
+       
     }
+
     render(){
         return(
             <div className="Area">
