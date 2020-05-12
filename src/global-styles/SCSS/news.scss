@@ -59,21 +59,19 @@
 	color:$main-text;
 }
 
-
-
 @media (max-width: 600px){
 	.news-container {
 		grid-column:1
 	}
-
 	.news-item-container {
 		grid-template-columns: 1fr;
 		grid-template-rows: 125px 1fr;
 	}
+
 	.news-img-container {
 		display: block; 
-
 	}
+	
 	.news-img {
 		border-radius: 0;
 		width: 100%;
