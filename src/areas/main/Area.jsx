@@ -175,15 +175,26 @@ class Area extends React.Component{
             }
 
              const getNewsData = async () => {
-                const countryNews = await fetch(newsEndpoint)
-                    .then(res => res.json())
-                    .then(res =>res.articles);
-                return(countryNews)
-            }
-
+                return new Promise((resolve, reject ) => {
+                const req = new XMLHttpRequest();
+                req.responseType = "json";
+                req.open("GET", newsEndpoint, true );
+                req.send();
+                req.onreadystatechange = () => {
+                    if (req.readyState === 4) {
+                        if (req.status === 200) {
+                            resolve(req.response.articles);
+                        } else {
+                            reject("didnt work");
+                        }
+                    }
+                }
+            })}
+            
             Promise.all([getCardData(), getNewsData()])
                 .then(values => { 
                     const [infectedPopulation, newsData] = values;
+                    
                     this.data.actualData.infectedPopulation = infectedPopulation;
                     this.data.newsData = newsData;
                     this.setState({
