@@ -3,6 +3,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 
 
+
 const Datepickers = (props) => {
     const firstDay = Date.parse(props.firstDay)
     return(
@@ -10,7 +11,7 @@ const Datepickers = (props) => {
             <div className="datepicker-container"> 
                 <h4 className="datepicker-title"> Chart Start Date</h4>
                     <DatePicker
-                        minDate={firstDay}
+                        minDate={Date.parse(props.originalFirstDay)}
                         placeholderText={ props.placeholderStart}
                         maxDate={(new Date())}
                         onSelect={(date) =>props.selectStart(date)}
