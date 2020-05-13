@@ -4,7 +4,10 @@ import SearchMainInput from './SearchMainInput';
 const SearchContainer = (props) =>{
     return(
     <div className="search-container">
-        <SearchMainInput searchCallback={props.searchCallback}/>
+        <SearchMainInput 
+            countries={props.countries} 
+            searchCallback={props.searchCallback}
+        />
     </div>
     )
 }

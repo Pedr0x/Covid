@@ -10,7 +10,6 @@ class SearchMainInput extends React.Component {
             upd: true,
             searchValue: ""
         };
-        this.countries = [];
          this.options = {
             keys: [
               "Country",
@@ -24,16 +23,9 @@ class SearchMainInput extends React.Component {
           this.normalize = this.normalize.bind(this);        
     }
 
-    componentDidMount() { 
-        fetch("https://api.covid19api.com/countries")
-            .then(res => res.json())
-            .then(res => {
-                this.countries = res;
-            })
-    }
-
+  
     validateCountry(){
-        const fuse = new Fuse(this.countries, this.options);
+        const fuse = new Fuse(this.props.countries, this.options);
         const pattern = this.state.searchValue;
         this.searchResults =  fuse.search(pattern).slice(0,5);
         console.log(this.searchResults);
@@ -63,7 +55,7 @@ class SearchMainInput extends React.Component {
                     : "";
             console.log(activeContainer);
             return(
-                <div onClick={() => console.log(this.countries)}> 
+                <div> 
                     <SearchInput
                         validateCountry={this.validateCountry}
                         getInputdata={this.getInputdata}
@@ -79,10 +71,3 @@ class SearchMainInput extends React.Component {
     }
 
 export default SearchMainInput
-/* 
-
-<div  
-className="search-res-item"
-> 
-{`${elem.item.Country}`}
-</div> */
