@@ -16,7 +16,7 @@ class Area extends React.Component{
                 deaths: null,
                 recovered:null,
                 active: null,
-                infectedPopulation:null
+                infected:null
             },
             allData: [],
             countryPopulation: null,
@@ -25,16 +25,16 @@ class Area extends React.Component{
         this.allCountries =[]
 
         this.formatChartData = this.formatChartData.bind(this);
-        this.getData = this.getData.bind(this);
         this.searchCountry = this.searchCountry.bind(this);      
         this.getApisData = this.getApisData.bind(this);     
         this.getCountries = this.getCountries.bind(this);  
-
+        this.resetCountry = this.resetCountry.bind(this);  
+        
     }
+
       componentDidMount(){
         this.getDataNew();
         this.getCountries()
-           
       }
         getCountries(){
              const COUNTRIES_ENDPOINT = "https://api.covid19api.com/countries"
@@ -59,54 +59,19 @@ class Area extends React.Component{
             getRequest()
                 .then(res => this.allCountries = res)
                 .catch(err => err)
-            console.log(this.data);
         }
 
-      componentDidUpdate(){
-          console.count("upd")
-      }
-
       formatChartData(value){
-          // FIX THIS ASAP
           const newArray = value
             .map(({City, CityCode, Country, CountryCode, Lat, Lon, Province , ...item}) => item);
             return(newArray);
-    }
-
-    getData(){
-        const API_LINK = `https://api.covid19api.com/dayone/country/${this.data.country}`;
-        //const response = await fetch(API_LINK).json();
-        const getCovidData = async () => {
-            const response = await fetch(API_LINK).then(res => res.json());
-            const {
-                Deaths,
-                Recovered, 
-                Active,
-                Country
-            } = response[response.length - 1];
-
-                const newActualData = {
-                    Deaths,
-                    Recovered, 
-                    Active
-                };
-                const allData = this.formatChartData(response);
-                this.data = {
-                    actualData: newActualData,
-                    country: Country,
-                    allData
-                };
-                this.getApisData()
-                    }
-                    getCovidData()
-                        .then(res => console.log("updd"))
     }
 
     getDataNew(){
         const API_LINK = `https://api.covid19api.com/dayone/country/${this.data.country}`;
         const getCovidData =  () => {
             return new Promise((resolve, reject ) => {
-                let req = new XMLHttpRequest();
+                const req = new XMLHttpRequest();
                 req.responseType = "json";
                 req.open('GET', API_LINK, true);
                 req.send();
@@ -115,14 +80,17 @@ class Area extends React.Component{
                         if (req.status === 200) {
                             resolve(req.response);
                         } else {
-                            reject(req.status)
+                            reject({
+                                code:req.status,
+                                area:"country Covid"
+                            })
                         }
                     }
                 }
             })
     }
         getCovidData()
-                .then(res => {
+            .then(res => {
                 const {
                     Deaths,
                     Recovered, 
@@ -144,38 +112,40 @@ class Area extends React.Component{
             })
             .then(res =>  this.getApisData())
             .catch(err => this.setState({
-                error: true
-            }))
-}
+                error: err
+            }));
+    }
 
         getApisData(){
             const {Active} = this.data.actualData;
             const  getAsyncApiData =  () =>{
             const country = encodeURI(this.data.country.toLowerCase());
-        
-            const newsEndpoint = 'http://newsapi.org/v2/everything?' +
+            const newsEndpoint = 'https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?' +
             `q=coronavirus+${country}&`+
             'sortBy=popularity&' +
             'apiKey=e90151a117284afab2e332a31e55bd7a';
 
             const getCardData =  () => {
                 return new Promise((resolve, reject ) => {
-                    let req = new XMLHttpRequest();
+                    const req = new XMLHttpRequest();
                     req.responseType = "json";
                     req.open("GET", `https://restcountries.eu/rest/v2/name/${country}`, true );
                     req.send();
                     req.onreadystatechange = () => {
                         if (req.readyState === 4) {
                             if (req.status === 200) {
-                                const infectedPopulation = ((Active  / req.response[0].population)* 100000).toFixed(2);
-                                resolve(infectedPopulation);
+                                const infected = ((Active  / req.response[0].population)* 100000).toFixed(2);
+                                resolve(infected);
                             } else {
-                                reject(req.status);
+                                reject({
+                                    code:req.status,
+                                    area:"countryPopulation"
+                                });
                             }
                         }
-                    }
-                })
-            }
+                }
+            })
+        }
 
              const getNewsData =  () => {
                 return new Promise((resolve, reject ) => {
@@ -188,8 +158,10 @@ class Area extends React.Component{
                             if (req.status === 200) {
                                 resolve(req.response.articles);
                             } else {
-                                console.log("bad request");
-                                reject(req.status);
+                                reject({
+                                    code:req.status,
+                                    area:"news"
+                                });
                             }
                         }
                     }
@@ -198,25 +170,23 @@ class Area extends React.Component{
             
             return Promise.all([getCardData(), getNewsData()])
                 .then(values => { 
-                    const [infectedPopulation, newsData] = values;
-                    this.data.actualData.infectedPopulation = infectedPopulation;
+                    const [infected, newsData] = values;
+                    this.data.actualData.infected = infected;
                     this.data.newsData = newsData;
                     return values
                 })
                 .catch(reason => {
-                    console.log(reason, "1");
-                    this.setState({
-                        error:true,
-                    })
+                    console.log(reason);
                 })
         }
 
         getAsyncApiData()
             .catch(err => this.setState({
-                error: true
+                error: err
             }))
             .then(res => this.setState({
-                upd:1
+                upd:1,
+                error:false
             }))
         }
     
@@ -224,11 +194,20 @@ class Area extends React.Component{
         this.data.country = data;
         this.getDataNew();
     }
+
+    resetCountry(){
+        this.data.country = "Argentina";
+        this.getDataNew();
+    }
       
     render(){
         return(
             <div className="Area">
-               <ErrorModal hasError={this.state.error} searchCallback={this.getDataNew}/>
+               <ErrorModal 
+                    hasError={this.state.error} 
+                    searchCallback={this.getDataNew}
+                    resetCountry={this.resetCountry}
+                />
                 <SearchContainer
                     countries={this.allCountries} 
                     searchCallback={this.searchCountry}
@@ -237,7 +216,7 @@ class Area extends React.Component{
             </div>
             )
     }
-}
+};
 
 export default Area
 

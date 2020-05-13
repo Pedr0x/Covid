@@ -11,22 +11,22 @@ const Header = () =>{
                 </div>
                 <div className="header-items-secondary"> 
                     <div className="header-item">
-                    <span class="material-icons">
+                    <span className="material-icons">
                         search
                     </span>
                     </div>
                     <div className="header-item">
-                        <span class="material-icons">
+                        <span className="material-icons">
                             show_chart
                         </span>
                     </div>
                     <div className="header-item">
-                        <span class="material-icons">
+                        <span className="material-icons">
                             public
                         </span>
                     </div>
                     <div className="header-item">
-                    <span class="material-icons">
+                    <span className="material-icons">
                         trending_up
                     </span>
                 </div>

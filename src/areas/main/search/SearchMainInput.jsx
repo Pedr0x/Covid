@@ -22,13 +22,11 @@ class SearchMainInput extends React.Component {
           this.validateCountry = this.validateCountry.bind(this);    
           this.normalize = this.normalize.bind(this);        
     }
-
-  
+      
     validateCountry(){
         const fuse = new Fuse(this.props.countries, this.options);
         const pattern = this.state.searchValue;
-        this.searchResults =  fuse.search(pattern).slice(0,5);
-        console.log(this.searchResults);
+        this.searchResults =  fuse.search(pattern).slice(0,3);
         this.setState({
             upd:true
         })

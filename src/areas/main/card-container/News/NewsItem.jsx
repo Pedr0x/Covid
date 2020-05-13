@@ -3,7 +3,6 @@ import React from 'react';
 const NewsItem = (props) => {
     const {title, url, description, urlToImage, source} = props.data;
     return(
-
         <div className="news-item-container">
             <div className="news-img-container"> 
                 <div 
@@ -16,7 +15,6 @@ const NewsItem = (props) => {
                     {source.name}
                 </div>
                 <a className="news-item-title" href={url}> {title}</a>
-               
                 <p className="news-item-description">
                     {description}
                 </p>

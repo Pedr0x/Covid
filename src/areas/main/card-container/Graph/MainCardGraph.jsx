@@ -25,10 +25,9 @@ class  MainCardGraph extends React.Component {
 	  this.getFirstDay = this.getFirstDay.bind(this);
 	  this.resetData = this.resetData.bind(this);
 	  this.getEndDay = this.getEndDay.bind(this);
-	  
 	}
 
-	shouldComponentUpdate(nextProps, nextState){
+	shouldComponentUpdate(nextProps){
 		if (nextProps !== this.props ){
 			this.resetData();
 			return true
@@ -49,22 +48,15 @@ class  MainCardGraph extends React.Component {
 	  
     onSelect(date){
 		const {data} = this.props;
-		// this.startDate = moment(date).format("L")
 		this.startDate = date
-		console.log(this.startDate);
-		console.log(typeof date);
-		console.log(data);
 		this.newDates = data.filter(elem  =>   new Date(elem.Date) > date);
-		console.log(this.newDates);
 		this.newDates = this.endDate 
 				? this.newDates
 					.filter(elem =>  new Date(elem.Date) <= new Date(this.endDate))
 				: this.newDates;
-		console.log(this.endDate);
 		this.setState({ 
 			upd:  1
 		});
-		console.log(this.newDates);
     }
 
 	onSelectEndDate(date){
@@ -88,7 +80,6 @@ class  MainCardGraph extends React.Component {
 				this.originalEndDate = data[0] !== undefined ? data[data.length - 1].Date : this.today;
 				return formattedDates;
 		} else {
-		  console.log(this.formatDate(this.newDates));
           return this.formatDate(this.newDates);
       }
 	}
@@ -125,27 +116,27 @@ resetData(){
 	this.newDates = null;
 }
     render() {
-      const arr= this.selectDate();
-	  const firstDay =  this.getFirstDay();
-	  const firstDayFormatted = firstDay ?  moment(firstDay).format("L") : this.today;
-	  const endDay = this.getEndDay();
-	  const endDayFormatted = moment(endDay).format("L");
-	  console.log(this.originalStartDate)
-      return (
-        <div className="main-card-graph-container-super"> 
-            <Graph data={arr}/>
-			<Datepickers 
-				originalFirstDay = {this.originalStartDate || this.today}
-				selectStart	= {this.onSelect} 
-				selectEnd = {this.onSelectEndDate}  
-				firstDay = {firstDay}	
-				placeholderStart = {firstDayFormatted}
-				placeholderEnd = {endDayFormatted}
-			/>
-			<GraphInfo
-				startDate={moment(this.originalStartDate).format("L")}
-			/>
-		</div>
+		const formattedData = this.selectDate();
+		const firstDay =  this.getFirstDay();
+		const firstDayFormatted = firstDay ?  moment(firstDay).format("L") : this.today;
+		const endDay = this.getEndDay();
+		const endDayFormatted = moment(endDay).format("L");
+		console.log(this.originalStartDate)
+		return (
+    		<div className="main-card-graph-container-super"> 
+				<Graph data={formattedData}/>
+				<Datepickers 
+					originalFirstDay = {this.originalStartDate || this.today}
+					selectStart	= {this.onSelect} 
+					selectEnd = {this.onSelectEndDate}  
+					firstDay = {firstDay}	
+					placeholderStart = {firstDayFormatted}
+					placeholderEnd = {endDayFormatted}
+				/>
+				<GraphInfo
+					startDate={moment(this.originalStartDate).format("L")}
+				/>
+			</div>
       );
     } 
   };

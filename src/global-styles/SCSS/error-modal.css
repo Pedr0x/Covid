@@ -5,6 +5,19 @@
   top: 0px;
   transition: 0.2 ease-in; }
 
+.error-modal-container.error-modal-container_active {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  align-items: center;
+  justify-items: center; }
+
+.error-modal {
+  padding: 5%;
+  z-index: 3;
+  background: #e9ecef;
+  font-weight: 600; }
+
 .error-modal-container_active {
   opacity: 1;
   transition: 0.2 ease-in;

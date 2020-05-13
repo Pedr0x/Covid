@@ -12,7 +12,7 @@ const NewsContainer = (props) => {
                     ? props.data.map(elem => 
                         <NewsItem data={elem} key={_.uniqueId()}/> )
                     : null
-                }}
+                }
         </div>
     )
 }

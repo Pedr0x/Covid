@@ -15,12 +15,11 @@ const SearchResContainer = (props) => {
                     callback={props.callback}
                     country={elem.item.Country}
                 />
-            )
-        }
+            )}
         </div>
     )
-    } else {
-        return null
+} else {
+      return null
     }
 }
 
