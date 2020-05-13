@@ -149,11 +149,10 @@ class Area extends React.Component{
 }
 
         getApisData(){
-            //main card
             const {Active} = this.data.actualData;
             const  getAsyncApiData =  () =>{
             const country = encodeURI(this.data.country.toLowerCase());
-            //let {infectedPopulation, Active} = this.data.actualData;
+        
             const newsEndpoint = 'http://newsapi.org/v2/everything?' +
             `q=coronavirus+${country}&`+
             'sortBy=popularity&' +

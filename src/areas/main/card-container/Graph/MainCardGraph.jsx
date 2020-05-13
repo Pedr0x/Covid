@@ -4,7 +4,7 @@ import moment from "moment"
 import Graph from "./Graph";
 import GraphInfo from "./GraphInfo";
 import Datepickers from "./Datepickers";
-
+const _ = require("lodash");
 
 class  MainCardGraph extends React.Component {
   constructor(props) {
@@ -40,10 +40,16 @@ class  MainCardGraph extends React.Component {
 	}
 	
       formatDate(value){
+		  console.log(value);
         const nArray= Array.from(value)
 			.forEach(elem => 
 				elem.Date = moment(elem.Date).format("L")
 			);
+			const cloned = _.cloneDeep(value);
+			cloned.forEach(elem => 
+				elem.Date = moment(elem.Date).format("L")
+			);
+			console.log(cloned, "clon");
           return value;
       }
 
@@ -124,9 +130,7 @@ resetData(){
 	console.log("resetted")
 }
     render() {
-		//const today = new Date();
-		//const startDatePickerDate = this.startDate;
-		const {data} = this.props
+		
       const arr= this.selectDate()
 	  const firstDay =  this.getFirstDay()
 	  const firstDayFormatted = firstDay ?  moment(firstDay).format("L") : this.today;
