@@ -3,10 +3,8 @@
   padding: 2%;
   display: grid;
   color: #ffffff;
-  grid-template-columns: 1fr 2fr; }
-
-.api-icons-container {
-  display: flex;
-  justify-content: space-evenly; }
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center; }
 
 /*# sourceMappingURL=footer.css.map */

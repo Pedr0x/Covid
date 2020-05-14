@@ -16,7 +16,7 @@ import React from 'react';
                         onClick={props.searchCallback} 
                         className="error-modal-btn"
                     >
-                    Search Again
+                        Search Again
                     </button>
                 )
             } 
@@ -28,7 +28,7 @@ import React from 'react';
                         onClick={resetData} 
                         className="error-modal-btn"
                     >
-                    Search Again
+                        Reset
                     </button>
                 )
             }
@@ -40,7 +40,7 @@ import React from 'react';
                         onClick={props.resetCountry} 
                         className="error-modal-btn"
                     >
-                        Search
+                        Reset
                     </button>
                 )
             }

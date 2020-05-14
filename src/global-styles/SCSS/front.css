@@ -50,6 +50,10 @@
 
 @media (max-width: 600px) {
   .front-container {
-    grid-template-columns: auto; } }
+    min-height: 550px;
+    grid-template-columns: auto; }
+
+  .front-title-container {
+    text-align: center; } }
 
 /*# sourceMappingURL=front.css.map */

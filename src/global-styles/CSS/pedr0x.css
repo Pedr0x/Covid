@@ -736,6 +736,7 @@ template {
 
 .datepicker-container {
   display: flex;
+  padding: 3% 0;
   flex-direction: column; }
 
 .react-datepicker__input-container input {
@@ -768,7 +769,18 @@ template {
 .main-card-data-list-container {
   padding: 2% 5%;
   display: flex;
-  flex-direction: column; }
+  flex-direction: column;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
+
+.main-card-info {
+  font-size: 16px;
+  text-align: center; }
+
+.main-card-info::before {
+  content: "*";
+  font-size: calc(0.75rem + 1vw);
+  color: #ff5400; }
 
 .main-card-data-title {
   font-weight: 600;
@@ -866,12 +878,20 @@ template {
   background: #0062cc;
   cursor: pointer;
   color: white;
+  font-size: calc(0.75rem + 1vw);
   transition: 0.2s; }
 
 .search-res-item:hover {
   background: #004a99;
   transition: 0.2s; }
 
+@media (max-width: 650px) {
+  .search-res-item {
+    width: 50%;
+    padding: 3% 4%; }
+
+  .search-main-input {
+    padding: 2%; } }
 .header-container {
   background: #000;
   font-weight: 600;
@@ -899,11 +919,9 @@ header {
   padding: 2%;
   display: grid;
   color: #ffffff;
-  grid-template-columns: 1fr 2fr; }
-
-.api-icons-container {
-  display: flex;
-  justify-content: space-evenly; }
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center; }
 
 .front-container {
   height: 100vh;
@@ -957,7 +975,11 @@ header {
 
 @media (max-width: 600px) {
   .front-container {
-    grid-template-columns: auto; } }
+    min-height: 550px;
+    grid-template-columns: auto; }
+
+  .front-title-container {
+    text-align: center; } }
 .info-banner-container {
   display: flex;
   flex-direction: row;
@@ -996,12 +1018,16 @@ header {
 
 .news-item-container {
   display: grid;
-  padding: 2%;
+  padding: 5% 2%;
   border-radius: 5px;
   grid-template-columns: 20% 1fr;
   margin: 3% 2%;
   margin: 5%;
   background: white; }
+
+.news-item-container {
+  grid-template-columns: 1fr;
+  grid-template-rows: 125px 1fr; }
 
 .news-img-container {
   display: grid;
@@ -1020,6 +1046,14 @@ header {
   margin: 3% 0;
   line-height: 1.5;
   color: #737373; }
+
+.news-img-container {
+  display: block; }
+
+.news-img {
+  border-radius: 0;
+  width: 100%;
+  height: 100%; }
 
 @media (max-width: 600px) {
   .news-container {

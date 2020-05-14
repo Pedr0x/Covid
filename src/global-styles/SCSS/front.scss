@@ -67,7 +67,11 @@
 
 @media (max-width: 600px){
 	.front-container {
+		min-height: 550px;
 		grid-template-columns: auto;
+	}
+	.front-title-container{
+		text-align: center;
 	}
 	
 }

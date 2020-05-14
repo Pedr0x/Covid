@@ -47,6 +47,7 @@
 	background: darken($blue, 10%);
 	cursor: pointer;
 	color: white;
+	font-size: $Small;
 	transition: 0.2s;
 }
 
@@ -54,4 +55,18 @@
 .search-res-item:hover {
 	background: darken($blue, 20%);
 	transition: 0.2s;
+}
+
+
+@media (max-width: 650px){
+
+	.search-res-item{
+		width: 50%;
+		padding: 3% 4%;
+	}
+	.search-main-input{
+		padding: 2%;
+
+	}
+
 }

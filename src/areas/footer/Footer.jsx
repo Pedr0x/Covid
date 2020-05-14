@@ -1,22 +1,13 @@
 import React from 'react';
+import logo from "./github-logo.png"
 
 const Footer = () =>{
     return(
         <footer className="footer-container">
-             <div className="github-icon">
-                 github
-             </div>
-             <div className="api-icons-container">
-                 <div className="api-icon">
-                    api icon
-                 </div>
-                 <div className="api-icon">
-                 api icon
-                     </div>
-                     <div className="api-icon">
-                     api icon
-                     </div>
-             </div>
+             <a href="https://github.com/Pedr0x/Covid"  className="github-icon">
+                 <img alt="github-logo" src={logo}
+                 />
+             </a>
              </footer>
     )
 }

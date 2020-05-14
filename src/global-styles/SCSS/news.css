@@ -25,12 +25,16 @@
 
 .news-item-container {
   display: grid;
-  padding: 2%;
+  padding: 5% 2%;
   border-radius: 5px;
   grid-template-columns: 20% 1fr;
   margin: 3% 2%;
   margin: 5%;
   background: white; }
+
+.news-item-container {
+  grid-template-columns: 1fr;
+  grid-template-rows: 125px 1fr; }
 
 .news-img-container {
   display: grid;
@@ -49,6 +53,14 @@
   margin: 3% 0;
   line-height: 1.5;
   color: #737373; }
+
+.news-img-container {
+  display: block; }
+
+.news-img {
+  border-radius: 0;
+  width: 100%;
+  height: 100%; }
 
 @media (max-width: 600px) {
   .news-container {

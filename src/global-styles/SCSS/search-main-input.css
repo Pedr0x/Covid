@@ -35,10 +35,19 @@
   background: #0062cc;
   cursor: pointer;
   color: white;
+  font-size: calc(0.75rem + 1vw);
   transition: 0.2s; }
 
 .search-res-item:hover {
   background: #004a99;
   transition: 0.2s; }
+
+@media (max-width: 650px) {
+  .search-res-item {
+    width: 50%;
+    padding: 3% 4%; }
+
+  .search-main-input {
+    padding: 2%; } }
 
 /*# sourceMappingURL=search-main-input.css.map */

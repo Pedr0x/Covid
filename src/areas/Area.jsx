@@ -46,12 +46,8 @@ class Area extends React.Component{
             .catch(reason => {
                 this.setState({error: reason});
             })
-        
       }
-      componentDidUpdate(){
-        console.log("updated")
-    }
-
+   
         getCountries(){
              const COUNTRIES_ENDPOINT = "https://cors-anywhere.herokuapp.com/https://api.covid19api.com/countries"
                 return new Promise((resolve, reject ) => {
@@ -64,7 +60,6 @@ class Area extends React.Component{
                             if (req.status === 200) {
                                 resolve(req.response);
                             } else {
-                                console.log("bad request");
                                 reject({
                                     area:"allCountries",
                                     code:req.status
@@ -104,6 +99,7 @@ class Area extends React.Component{
     }
 
     getDataNew(){
+        console.log(this.data)
         const API_LINK = `https://api.covid19api.com/dayone/country/${this.data.country}`;
         const getCovidData =  () => {
             return new Promise((resolve, reject ) => {
@@ -159,7 +155,7 @@ class Area extends React.Component{
             const newsEndpoint = 'https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?' +
             `q=coronavirus+${country}&`+
             'sortBy=popularity&' +
-            'apiKey=e90151a117284afab2e332a31e55bd7a';
+            'apiKey=xxe90151a117284afab2e332a31e55bd7a';
 
             const getCardData =  () => {
                 return new Promise((resolve, reject ) => {
@@ -182,6 +178,8 @@ class Area extends React.Component{
                 }
             })
         }
+        
+
 
              const getNewsData =  () => {
                 return new Promise((resolve, reject ) => {
@@ -211,9 +209,9 @@ class Area extends React.Component{
                     this.data.newsData = newsData;
                     return values
                 })
-                .catch(reason => {
-                    console.log(reason);
-                })
+                .catch(reason => 
+                    reason
+                )
         }
 
         getAsyncApiData()
