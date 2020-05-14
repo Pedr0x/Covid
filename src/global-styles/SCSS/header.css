@@ -2,7 +2,7 @@
   background: #000;
   font-weight: 600;
   color: #ffffff;
-  font-size: calc(0.75rem + 1vw); }
+  font-size: calc(1rem + 1vw); }
 
 .header-item-primary {
   flex: 2; }

@@ -16,7 +16,8 @@
 
 .error-modal-container_active {
   background: #0000005e;
-  transition: 0.2s; }
+  transition: 0.2s;
+  z-index: 99; }
 
 .error-modal {
   pointer-events: none;
@@ -27,7 +28,7 @@
   z-index: 3;
   z-index: 999;
   position: relative;
-  background: #dee2e6;
+  background: #ffffff;
   font-weight: 600; }
 
 .error-modal-container_active {
@@ -36,6 +37,6 @@
   pointer-events: all; }
 
 .error-modal-btn {
-  font-size: calc(0.5rem + 1vw); }
+  font-size: calc(0.75rem + 1vw); }
 
 /*# sourceMappingURL=error-modal.css.map */

@@ -45,8 +45,15 @@
 	display: flex;
 	justify-content: space-around;
 	padding: 3% 2% 1%;
+	
 }
 
+.graph-info-item {
+	text-align: center;
+	padding: 2%;
+	display: flex;
+	flex-direction: column;
+}
 
 // ### main card data
 
@@ -125,7 +132,7 @@ flex-direction: column;
 		display: grid;
 		grid-template-rows: 1fr 1fr;
 	}
-	
+
 	.main-card-data {
 		grid-column: 1;
 	}

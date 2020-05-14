@@ -2,8 +2,7 @@ import React from 'react';
 //import FrontImage from './FrontImage';
 import InfoCard from './InfoCard';
 
-
-const Front = () =>{
+const Front = React.memo((props) =>{
     return(
         <div className="front-container">
             <div className="front-title-container">
@@ -12,10 +11,10 @@ const Front = () =>{
                 </h2>
             </div>
             <div className="info-card-super"> 
-                <InfoCard/>
+                <InfoCard globalCovidData={props.globalCovidData}/>
             </div>
         </div>
     )
-}
+})
 
 export default Front;

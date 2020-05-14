@@ -22,7 +22,7 @@
 .error-modal-container_active {
     background: #0000005e;
     transition: 0.2s;
-
+    z-index:99;
 }
 
 .error-modal{
@@ -34,7 +34,7 @@
     z-index: 3;
     z-index: 999;
     position: relative;
-	background: $gray-300;
+	background: $white;
 	font-weight: 600;
 }
 

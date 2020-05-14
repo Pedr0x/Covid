@@ -2,17 +2,17 @@ import React from 'react';
 import ErrorButton from "./ErrorButton";
 
 const ErrorModal = (props) => {
-    let errorMessage;
+    let errorMessage = null;
     if (props.hasError) {
         if ( props.hasError.area === "news"){
-            errorMessage = "Please try again in a minute"
+            errorMessage = "Please try again in a minute";
         }
         if (props.hasError.area === "country Covid"){
-            errorMessage = "idk"
+            errorMessage = "We dont have that country´s data";
         }
         else {
-            errorMessage = "Please try again in a minute"
-        }
+            errorMessage = "Please try again in a minute";
+        } 
     }
 
     const isActive = props.hasError ? "error-modal-container_active" : ""
@@ -20,18 +20,20 @@ const ErrorModal = (props) => {
             <div className={`error-modal-container ${isActive}`}>
                 <div className="error-modal"> 
                     <div className="error-modal-text">
-                        We had an error. Please try again
-                        : {props.hasError.code ? `code ${props.hasError.code}` : null}
+                        We had an error. Please try again:
+                        
+                        
+                        {props.hasError.code ? `code: ${props.hasError.code}` : null}
                         {errorMessage}
                     </div>
-                    <div>
-                        <ErrorButton 
-                            resetCountry={props.resetCountry} 
-                            hasError={props.hasError}
-                            searchCallback={props.searchCallback}
-                            getCountries={props.getCountries} 
-                        />
-                 </div>
+                        <div>
+                            <ErrorButton 
+                                resetCountry={props.resetCountry} 
+                                hasError={props.hasError}
+                                searchCallback={props.searchCallback}
+                                getCountries={props.getCountries} 
+                            />
+                    </div>
                 </div>
         </div> 
         )

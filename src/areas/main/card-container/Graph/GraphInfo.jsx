@@ -5,7 +5,7 @@ const GraphInfo = (props) => {
         <div className="graph-info">
 	        <div className="graph-info-item">
 				<h5 className="graph-info-title">
-				    First Known Case
+				    First Known Case: {" "}
 				</h5>
 				<h5 className="graph-info-data">
 				    {props.startDate ? props.startDate : null}

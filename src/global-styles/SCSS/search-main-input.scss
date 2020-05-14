@@ -50,9 +50,6 @@
 	transition: 0.2s;
 }
 
-.search-res-item:nth-child(2n){
-	//background: #1c1c1c;
-}
 
 .search-res-item:hover {
 	background: darken($blue, 20%);

@@ -52,7 +52,7 @@ class  MainCardGraph extends React.Component {
 		this.newDates = data.filter(elem  =>   new Date(elem.Date) > date);
 		this.newDates = this.endDate 
 				? this.newDates
-					.filter(elem =>  new Date(elem.Date) <= new Date(this.endDate))
+					.filter(elem =>  new Date(elem.Date) <= this.endDate)
 				: this.newDates;
 		this.setState({ 
 			upd:  1
@@ -60,7 +60,7 @@ class  MainCardGraph extends React.Component {
     }
 
 	onSelectEndDate(date){
-		 this.endDate = moment(date).format("L")
+		this.endDate = date
 		this.newDates = 
 			this.props.data.filter(elem  =>  new Date(elem.Date) <=  date);
 		this.newDates = this.startDate
@@ -98,7 +98,7 @@ class  MainCardGraph extends React.Component {
 
 	getEndDay(){
 		if (this.endDate !== null){
-			return this.endDate
+			return (moment(this.endDate).format("L"))
 		}
 		if (this.props.data[0] !== undefined){
 			return Date.parse(this.props.data[this.props.data.length - 1].Date)

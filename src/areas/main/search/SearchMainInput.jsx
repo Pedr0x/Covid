@@ -17,27 +17,22 @@ class SearchMainInput extends React.Component {
             ],
             minMatchCharLength: 1
           };
-          this.searchResults = []
+          this.searchResults = [];
+          this.searchValue = "";
           this.getInputdata = this.getInputdata.bind(this);        
-          this.validateCountry = this.validateCountry.bind(this);    
           this.normalize = this.normalize.bind(this);        
     }
       
-    validateCountry(){
+  
+    getInputdata(e){
+        this.searchValue = e.target.value;
         const fuse = new Fuse(this.props.countries, this.options);
-        const pattern = this.state.searchValue;
+        const pattern = this.searchValue;
         this.searchResults =  fuse.search(pattern).slice(0,3);
         this.setState({
             upd:true
-        })
-    }
-
-    getInputdata(e){
-        this.setState({
-            searchValue: e.target.value
-        });
-        this.validateCountry()
-    }
+        })  
+      }
 
     normalize(data){
         this.props.searchCallback(data);
@@ -51,11 +46,9 @@ class SearchMainInput extends React.Component {
                 this.searchResults 
                     ? "search-res-container-super_active"
                     : "";
-            console.log(activeContainer);
             return(
                 <div> 
                     <SearchInput
-                        validateCountry={this.validateCountry}
                         getInputdata={this.getInputdata}
                     />
                     <SearchResContainer 

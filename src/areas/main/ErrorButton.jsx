@@ -1,13 +1,15 @@
 import React from 'react';
 
     const ErrorButton = (props) => {
+        const {area} = props.hasError
         function resetData(){
             props.searchCallback();
             props.getCountries();
         }
+
         if (props.hasError){
-            if (props.hasError.area === "news"){
-                //bad request on news
+            if (area === "news" || area === "countryPopulation" ){
+                //bad request on news or countryPopulation
                 //repeat request
                 return(
                     <button 
@@ -30,7 +32,6 @@ import React from 'react';
                     </button>
                 )
             }
-            
             else {
                 //invalid response on countries covid data 
                 //search for a different country
@@ -39,7 +40,7 @@ import React from 'react';
                         onClick={props.resetCountry} 
                         className="error-modal-btn"
                     >
-                    Search
+                        Search
                     </button>
                 )
             }

@@ -1,7 +1,8 @@
 import React from 'react';
-import SearchContainer from "./search/SearchContainer";
-import CardsContainer from "./card-container/CardsContainer";
-import ErrorModal from "./ErrorModal";
+import SearchContainer from "./main/search/SearchContainer";
+import CardsContainer from "./main/card-container/CardsContainer";
+import ErrorModal from "./main/ErrorModal";
+import Front from "./front/Front";
 
 class Area extends React.Component{
     constructor(props) {
@@ -21,25 +22,38 @@ class Area extends React.Component{
             allData: [],
             countryPopulation: null,
             newsData : [],
+            globalCovidData: []
         }
-        this.allCountries = [];
+        this.allCountries =[]
 
         this.formatChartData = this.formatChartData.bind(this);
         this.searchCountry = this.searchCountry.bind(this);      
         this.getApisData = this.getApisData.bind(this);     
         this.getCountries = this.getCountries.bind(this);  
         this.resetCountry = this.resetCountry.bind(this);  
+        this.getGlobalCovidData = this.getGlobalCovidData.bind(this);  
         
     }
 
       componentDidMount(){
-        this.getDataNew();
-        this.getCountries();
+        Promise.all([this.getCountries(), this.getGlobalCovidData()])
+            .then(values => { 
+                const [allCountries, globalCovidData] = values;
+                this.allCountries = allCountries;
+                this.globalCovidData = globalCovidData;
+            })
+            .then(res => this.getDataNew())
+            .catch(reason => {
+                this.setState({error: reason});
+            })
+        
       }
-     
+      componentDidUpdate(){
+        console.log("updated")
+    }
+
         getCountries(){
-            const COUNTRIES_ENDPOINT = "https://api.covid19api.com/countries"
-            const getRequest =   () => {
+             const COUNTRIES_ENDPOINT = "https://cors-anywhere.herokuapp.com/https://api.covid19api.com/countries"
                 return new Promise((resolve, reject ) => {
                     const req = new XMLHttpRequest();
                     req.responseType = "json";
@@ -59,15 +73,33 @@ class Area extends React.Component{
                         }
                     }
                 })
-            } 
-            getRequest()
-                .then(res => this.allCountries = res)
-                .catch(err => err)
+            }
+      
+        getGlobalCovidData(){
+            const ENDPOINT = "https://cors-anywhere.herokuapp.com/https://api.covid19api.com/summary";
+            return new Promise((resolve, reject ) => {
+                const req = new XMLHttpRequest();
+                req.responseType = "json";
+                req.open("GET", ENDPOINT, true );
+                req.send();
+                req.onreadystatechange = () => {
+                    if (req.readyState === 4) {
+                        if (req.status === 200) {
+                            resolve(req.response.Global);
+                        } else {
+                            reject({
+                                code:req.status,
+                                area:"globalCovid"
+                            });
+                        }
+                    }
+                }
+            })
         }
 
       formatChartData(value){
           const newArray = value
-              .map(({City, CityCode, Country, CountryCode, Lat, Lon, Province , ...item}) => item);
+            .map(({City, CityCode, Country, CountryCode, Lat, Lon, Province , ...item}) => item);
             return(newArray);
     }
 
@@ -179,9 +211,9 @@ class Area extends React.Component{
                     this.data.newsData = newsData;
                     return values
                 })
-                .catch(reason => 
-                    reason
-                )
+                .catch(reason => {
+                    console.log(reason);
+                })
         }
 
         getAsyncApiData()
@@ -200,10 +232,11 @@ class Area extends React.Component{
     }
 
     resetCountry(){
+        //reset on bad request
         this.data.country = "Argentina";
         this.getDataNew();
     }
-      
+    
     render(){
         return(
             <div className="Area">
@@ -213,6 +246,7 @@ class Area extends React.Component{
                     resetCountry={this.resetCountry}
                     getCountries={this.getCountries}
                 />
+                <Front globalCovidData={this.globalCovidData}/>
                 <SearchContainer
                     countries={this.allCountries} 
                     searchCallback={this.searchCountry}
