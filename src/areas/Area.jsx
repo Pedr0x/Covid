@@ -155,7 +155,7 @@ class Area extends React.Component{
             const newsEndpoint = 'https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?' +
             `q=coronavirus+${country}&`+
             'sortBy=popularity&' +
-            'apiKey=xxe90151a117284afab2e332a31e55bd7a';
+            'apiKey=xe90151a117284afab2e332a31e55bd7a';
 
             const getCardData =  () => {
                 return new Promise((resolve, reject ) => {
@@ -212,6 +212,7 @@ class Area extends React.Component{
                 .catch(reason => 
                     reason
                 )
+                .catch(reason => console.log(reason))
         }
 
         getAsyncApiData()
