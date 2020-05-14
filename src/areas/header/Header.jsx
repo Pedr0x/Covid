@@ -1,5 +1,5 @@
 import React from 'react';
-
+import HeaderItem from "./HeaderItem"
 const Header = () =>{
     return(
         <div className="header-container">
@@ -10,26 +10,15 @@ const Header = () =>{
                     </h4>
                 </div>
                 <div className="header-items-secondary"> 
-                    <div className="header-item">
-                    <span className="material-icons">
-                        search
-                    </span>
-                    </div>
-                    <div className="header-item">
-                        <span className="material-icons">
-                            show_chart
-                        </span>
-                    </div>
-                    <div className="header-item">
-                        <span className="material-icons">
-                            public
-                        </span>
-                    </div>
-                    <div className="header-item">
-                    <span className="material-icons">
-                        trending_up
-                    </span>
-                </div>
+                    <HeaderItem
+                        icon={"search"}
+                    />
+                    <HeaderItem
+                        icon={"public"}
+                    />                    
+                   <HeaderItem
+                        icon={"trending_up"}
+                    />
                 </div>
             </header>
         </div>

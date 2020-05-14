@@ -120,6 +120,12 @@ flex-direction: column;
 		max-width: 100%;
 		overflow-x: scroll;
 	}
+
+	.date-filter-container {
+		display: grid;
+		grid-template-rows: 1fr 1fr;
+	}
+	
 	.main-card-data {
 		grid-column: 1;
 	}
@@ -137,6 +143,7 @@ flex-direction: column;
 		display: block; 
 
 	}
+
 	.news-img {
 		border-radius: 0;
 		width: 100%;

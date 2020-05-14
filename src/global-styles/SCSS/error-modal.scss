@@ -1,25 +1,40 @@
 @import "variables";
 
-.error-modal-container{
+.error-modal-container_active .error-modal{
+    pointer-events: all;
+    transition: 0.2 ease-in;
+
+}
+
+.error-modal-container  {
+	width: 100%;
+    height: 100%;
     position: fixed;
     opacity: 0;
-    pointer-events: none;
     top:0px;
-    transition: 0.2 ease-in;
-}
-
-.error-modal-container.error-modal-container_active {
-	width: 100%;
-	height: 100%;
 	display: grid;
 	align-items: center;
-	justify-items: center;
+    justify-items: center;
+    transition: 0.2s;
+    pointer-events: none;
 }
 
-.error-modal {
+.error-modal-container_active {
+    background: #0000005e;
+    transition: 0.2s;
+
+}
+
+.error-modal{
+    pointer-events: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     padding: 5%;
     z-index: 3;
-	background: $gray-200;
+    z-index: 999;
+    position: relative;
+	background: $gray-300;
 	font-weight: 600;
 }
 
@@ -28,6 +43,7 @@
     transition: 0.2 ease-in;
     pointer-events: all;
 }
+
 .error-modal-btn{
     font-size: $Small;
 }

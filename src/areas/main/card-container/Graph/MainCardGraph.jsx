@@ -18,6 +18,7 @@ class  MainCardGraph extends React.Component {
 	  this.originalEndDate = null;
 	  this.endDate = null
 	  this.newDates = null;
+
       this.selectDate = this.selectDate.bind(this);
       this.onSelect = this.onSelect.bind(this);
       this.formatDate = this.formatDate.bind(this);
@@ -45,7 +46,6 @@ class  MainCardGraph extends React.Component {
           return cloned;
       }
 
-	  
     onSelect(date){
 		const {data} = this.props;
 		this.startDate = date
@@ -75,7 +75,7 @@ class  MainCardGraph extends React.Component {
     selectDate(){
 		const {data} = this.props;
 		if (this.newDates == null){
-				const formattedDates = this.formatDate(this.props.data)
+				const formattedDates = this.formatDate(this.props.data);
 				this.originalStartDate = data[0] !== undefined ? data[0].Date : this.today;
 				this.originalEndDate = data[0] !== undefined ? data[data.length - 1].Date : this.today;
 				return formattedDates;
@@ -121,7 +121,6 @@ resetData(){
 		const firstDayFormatted = firstDay ?  moment(firstDay).format("L") : this.today;
 		const endDay = this.getEndDay();
 		const endDayFormatted = moment(endDay).format("L");
-		console.log(this.originalStartDate)
 		return (
     		<div className="main-card-graph-container-super"> 
 				<Graph data={formattedData}/>

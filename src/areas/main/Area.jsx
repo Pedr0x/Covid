@@ -50,7 +50,10 @@ class Area extends React.Component{
                                 resolve(req.response);
                             } else {
                                 console.log("bad request");
-                                reject(req.status);
+                                reject({
+                                    area:"allCountries",
+                                    code:req.status
+                                });
                             }
                         }
                     }
@@ -207,6 +210,7 @@ class Area extends React.Component{
                     hasError={this.state.error} 
                     searchCallback={this.getDataNew}
                     resetCountry={this.resetCountry}
+                    getCountries={this.getCountries}
                 />
                 <SearchContainer
                     countries={this.allCountries} 

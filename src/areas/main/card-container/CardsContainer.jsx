@@ -1,5 +1,4 @@
 import React from 'react';
-
 import MainCardContainer from './MainCardContainer';
 
 class CardsContainer extends React.Component{

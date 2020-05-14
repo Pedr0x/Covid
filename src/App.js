@@ -5,7 +5,7 @@ import "./global-styles/CSS/pedr0x.css"
 function App() {
   return (
     <div className="App">
-		<Main/>
+		  <Main/>
     </div>
   );
 }

@@ -1,29 +1,17 @@
 import React from 'react';
+import ErrorButton from "./ErrorButton";
 
 const ErrorModal = (props) => {
-    const ErrorButton = (props) => {
-        if (props.hasError){
-        if (props.hasError.area === "news"){
-            return(
-                <button 
-                    onClick={props.searchCallback} 
-                    className="error-modal-btn"
-                >
-                Search Again
-                </button>
-            )
-        }  else {
-                return (
-                    <button 
-                        onClick={props.resetCountry} 
-                        className="error-modal-btn"
-                    >
-                    Search Again for a different Country
-                    </button>
-                )
-            }
-        } else {
-            return <h4> no error but you cant see this</h4>
+    let errorMessage;
+    if (props.hasError) {
+        if ( props.hasError.area === "news"){
+            errorMessage = "Please try again in a minute"
+        }
+        if (props.hasError.area === "country Covid"){
+            errorMessage = "idk"
+        }
+        else {
+            errorMessage = "Please try again in a minute"
         }
     }
 
@@ -31,14 +19,19 @@ const ErrorModal = (props) => {
         return(
             <div className={`error-modal-container ${isActive}`}>
                 <div className="error-modal"> 
-                    <p className="error-modal-text">
+                    <div className="error-modal-text">
                         We had an error. Please try again
                         : {props.hasError.code ? `code ${props.hasError.code}` : null}
-                    </p>
-                    <ErrorButton 
-                    resetCountry={props.resetCountry} 
-                    hasError={props.hasError} 
-                />
+                        {errorMessage}
+                    </div>
+                    <div>
+                        <ErrorButton 
+                            resetCountry={props.resetCountry} 
+                            hasError={props.hasError}
+                            searchCallback={props.searchCallback}
+                            getCountries={props.getCountries} 
+                        />
+                 </div>
                 </div>
         </div> 
         )

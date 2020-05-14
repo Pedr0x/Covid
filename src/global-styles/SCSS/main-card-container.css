@@ -88,6 +88,10 @@
     max-width: 100%;
     overflow-x: scroll; }
 
+  .date-filter-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr; }
+
   .main-card-data {
     grid-column: 1; }
 

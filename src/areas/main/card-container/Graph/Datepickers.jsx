@@ -2,8 +2,6 @@ import React from 'react';
 import "react-datepicker/dist/react-datepicker.css";
 import DatePicker from "react-datepicker";
 
-
-
 const Datepickers = (props) => {
     const firstDay = Date.parse(props.firstDay)
     return(
