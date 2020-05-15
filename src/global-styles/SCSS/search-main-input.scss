@@ -6,6 +6,7 @@
 		align-items: center;
 	justify-content: center;
 	padding: 1%;
+	display:grid;
 	background: $black;
 }
 
@@ -24,35 +25,31 @@
 
 }
 
+
 .search-res-container-super{
-	position: absolute; 
 	z-index: 2;
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	width: 100%;
 	font-size: $Small;
 	font-weight: 600;
+	background:#0000005e;
+
 
 }
 
 .search-res-item-container {
-	width: 100%;
 	align-content:center ;
 	align-items: center;
 	display: grid;
 	justify-items: center;
-	color: $white
-	/* transform: translateY(45px); */
+	color: $white;
 }
-
 
 
 .search-res-item {
 	padding: 1%;
 	text-align: center;
-	width: 25%;
-	background: darken($blue, 10%);
 	background: $black;
 	cursor: pointer;
 	color: white;

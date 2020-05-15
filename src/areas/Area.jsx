@@ -249,6 +249,7 @@ class Area extends React.Component{
                     searchCallback={this.getDataNew}
                     resetCountry={this.resetCountry}
                     getCountries={this.getCountries}
+                    isLoading={this.state.loading}
                 />
                 <Front globalCovidData={this.globalCovidData}/>
                 <SearchContainer

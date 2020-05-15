@@ -46,8 +46,8 @@ class SearchMainInput extends React.Component {
                     ? "search-res-container-super_active"
                     : "";
             return(
-                <div> 
-                    <SearchInput
+                <div className="search-main-input-container"> 
+                <SearchInput
                         getInputdata={this.getInputdata}
                     />
                     <SearchResContainer 

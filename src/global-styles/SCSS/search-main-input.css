@@ -4,6 +4,7 @@
   align-items: center;
   justify-content: center;
   padding: 1%;
+  display: grid;
   background: #000; }
 
 .search-main-input {
@@ -18,17 +19,15 @@
   font-size: calc(0.75rem + 1vw); }
 
 .search-res-container-super {
-  position: absolute;
   z-index: 2;
   display: flex;
   align-items: center;
   flex-direction: column;
-  width: 100%;
   font-size: calc(0.75rem + 1vw);
-  font-weight: 600; }
+  font-weight: 600;
+  background: #0000005e; }
 
 .search-res-item-container {
-  width: 100%;
   align-content: center;
   align-items: center;
   display: grid;
@@ -38,8 +37,6 @@
 .search-res-item {
   padding: 1%;
   text-align: center;
-  width: 25%;
-  background: #0062cc;
   background: #000;
   cursor: pointer;
   color: white;

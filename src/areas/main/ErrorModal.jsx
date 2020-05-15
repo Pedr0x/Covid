@@ -1,5 +1,6 @@
 import React from 'react';
 import ErrorButton from "./ErrorButton";
+import SpinnerContainer from "./SpinnerContainer";
 
 const ErrorModal = (props) => {
     let errorMessage = null;
@@ -14,17 +15,11 @@ const ErrorModal = (props) => {
             errorMessage = "Please try again in a minute";
         } 
     }
-
-    const isActive = props.hasError ? "error-modal-container_active" : "";
-        if (props.hasError) {
-            return(
-                <div className={`error-modal-container ${isActive}`}>
-                    <div className="error-modal"> 
+        const  fullError = () => ( 
                         <div className="error-modal-text">
                             We had an error:
                             {props.hasError.code ? `code: ${props.hasError.code}` : null}
                             {errorMessage}
-                        </div>
                             <div>
                                 <ErrorButton 
                                     resetCountry={props.resetCountry} 
@@ -33,18 +28,21 @@ const ErrorModal = (props) => {
                                     getCountries={props.getCountries} 
                                 />
                         </div>
+                        </div>
+        )
+    const {hasError, isLoading} = props
+    const isActive = hasError  || isLoading ? "error-modal-container_active" : "";
+
+            return(
+                <div className={`error-modal-container ${isActive}`}>
+                    <div className="error-modal"> 
+                        {hasError ?  fullError : <h3> loading </h3>
+                        }
                     </div>
             </div> 
             )
         }
-        if (props.isLoading){
-            return (
-                <div>
-                    is loading
-                </div>)
-        } else {
-            return null
-        }
-}
+
+     
 
 export default ErrorModal
