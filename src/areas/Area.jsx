@@ -9,14 +9,15 @@ class Area extends React.Component{
         super(props);
         this.state = { 
             upd: true,
-            error:false
+            error:false,
+            loading:false
         };
         this.data = {
             country: "South Africa",
             actualData: {
                 deaths: null,
                 recovered:null,
-                active: null,
+                Active: null,
                 infected:null
             },
             allData: [],
@@ -34,7 +35,9 @@ class Area extends React.Component{
     }
 
       componentDidMount(){
-        console.log(this.data);
+          this.setState({
+              loading:true
+          });
         Promise.all([this.getCountries(), this.getGlobalCovidData()])
             .then(values => { 
                 const [allCountries, globalCovidData] = values;
@@ -42,12 +45,13 @@ class Area extends React.Component{
                 this.globalCovidData = globalCovidData;
             })
             .then(res => this.getDataNew())
+            .then(res => this.getApisData())
+            .then(res => console.log("ended"))
             .catch(reason => {
                 this.setState({error: reason});
             })
-      }
-      componentDidUpdate(){
-          console.count("updated")
+            .finally(res => this.setState({loading:false}))
+            .finally(res => console.log("promise ended"))
       }
    
         getCountries(){
@@ -102,9 +106,7 @@ class Area extends React.Component{
     }
 
     getDataNew(){
-        console.log(this.data);
         const API_LINK = `https://api.covid19api.com/dayone/country/${this.data.country}`;
-        const getCovidData =  () => {
             return new Promise((resolve, reject ) => {
                 const req = new XMLHttpRequest();
                 req.responseType = "json";
@@ -123,8 +125,6 @@ class Area extends React.Component{
                     }
                 }
             })
-    }
-        getCovidData()
             .then(res => {
                 const {
                     Deaths,
@@ -149,15 +149,13 @@ class Area extends React.Component{
                     ...oldItems
                 };
             })
-            .then(res =>  this.getApisData())
-            .catch(err => this.setState({
-                error: err
-            }));
+            .catch(err => err)
+            .finally(res => console.log("ended on new data"))
+
     }
 
         getApisData(){
-            const {Active} = this.data.actualData;
-            const  getAsyncApiData =  () =>{
+            console.log( this.data.actualData);
             const country = encodeURI(this.data.country.toLowerCase());
             const newsEndpoint = 'https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?' +
             `q=coronavirus+${country}&`+
@@ -173,7 +171,10 @@ class Area extends React.Component{
                     req.onreadystatechange = () => {
                         if (req.readyState === 4) {
                             if (req.status === 200) {
-                                const infected = ((Active  / req.response[0].population)* 100000).toFixed(2);
+                                const infected = ((this.data.actualData.Active  / req.response[0].population)* 100000).toFixed(2);
+                                console.log(infected);
+                                console.log(this.data.actualData.Active);
+                                console.log(req.response[0].population)
                                 resolve(infected);
                             } else {
                                 reject({
@@ -212,33 +213,32 @@ class Area extends React.Component{
                     const [infected, newsData] = values;
                     this.data.actualData.infected = infected;
                     this.data.newsData = newsData;
+                    console.log("allapis")
                     return values
                 })
                 .catch(reason => 
                     reason
                 )
-                .catch(reason => console.log(reason))
-        }
-
-        getAsyncApiData()
-            .catch(err => this.setState({
-                error: err
-            }))
-            .then(res => this.setState({
-                upd:1,
-                error:false
-            }))
-        }
+            }        
     
     searchCountry(data){
         this.data.country = data;
-        this.getDataNew();
+        this.setState({loading:true});
+        this.getDataNew()
+            .then(res => this.getApisData())
+            .then(res => console.log("ended"))
+            .catch(reason => {
+                this.setState({error: reason});
+            })
+            .finally(res => this.setState({loading:false}))
+            .finally(res => console.log("promise ended"))
     }
 
     resetCountry(){
         //reset on bad request
         this.data.country = "Argentina";
         this.getDataNew();
+        
     }
     
     render(){

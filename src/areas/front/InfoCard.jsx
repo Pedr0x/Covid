@@ -14,7 +14,7 @@ const InfoCard = (props) => {
                             <InfoCardItem label="Confirmed" number={globalCovidData.TotalConfirmed}/>
                             <InfoCardItem label="Recovered" number={globalCovidData.TotalRecovered}/>
                      </React.Fragment>
-                     : <h2 className="info-card-loading-subtitle">
+                     : <h2      className="info-card-loading-subtitle">
                          Loading
                      </h2>
                 }

@@ -15,26 +15,36 @@ const ErrorModal = (props) => {
         } 
     }
 
-    const isActive = props.hasError ? "error-modal-container_active" : ""
-        return(
-            <div className={`error-modal-container ${isActive}`}>
-                <div className="error-modal"> 
-                    <div className="error-modal-text">
-                        We had an error:
-                        {props.hasError.code ? `code: ${props.hasError.code}` : null}
-                        {errorMessage}
+    const isActive = props.hasError ? "error-modal-container_active" : "";
+        if (props.hasError) {
+            return(
+                <div className={`error-modal-container ${isActive}`}>
+                    <div className="error-modal"> 
+                        <div className="error-modal-text">
+                            We had an error:
+                            {props.hasError.code ? `code: ${props.hasError.code}` : null}
+                            {errorMessage}
+                        </div>
+                            <div>
+                                <ErrorButton 
+                                    resetCountry={props.resetCountry} 
+                                    hasError={props.hasError}
+                                    searchCallback={props.searchCallback}
+                                    getCountries={props.getCountries} 
+                                />
+                        </div>
                     </div>
-                        <div>
-                            <ErrorButton 
-                                resetCountry={props.resetCountry} 
-                                hasError={props.hasError}
-                                searchCallback={props.searchCallback}
-                                getCountries={props.getCountries} 
-                            />
-                    </div>
-                </div>
-        </div> 
-        )
+            </div> 
+            )
+        }
+        if (props.isLoading){
+            return (
+                <div>
+                    is loading
+                </div>)
+        } else {
+            return null
+        }
 }
 
 export default ErrorModal
