@@ -1,7 +1,10 @@
 import React from 'react';
 
 const MainCardDataListItem = (props) => {
-    //fix this into an object 
+    function formatNumber(num) {
+        return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+      };
+      
     const Text = () => {
         return(
             <div className="main-card-data-list-item"> 
@@ -9,7 +12,7 @@ const MainCardDataListItem = (props) => {
                     {props.data[0]}: {" "}
                 </h6>
                 <h6 className="main-card-list-item-data">
-                    {props.data[1]}
+                    {props.data[1] && formatNumber(props.data[1]) }
                 </h6>
             </div>
         )

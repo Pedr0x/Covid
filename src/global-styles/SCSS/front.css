@@ -2,13 +2,23 @@
   height: 100vh;
   display: grid;
   background: #e9ecef;
-  grid-template-columns: 2fr 1fr; }
+  grid-template-columns: 2fr 1fr;
+  background-image: url("https://tec.mx/sites/default/files/inline-images/doctores-trajes-biomedicos-covid-19.jpg");
+  background-size: cover  !important;
+  background-repeat: no-repeat  !important;
+  background-position: center center !important;
+  /* background-color: black; */
+  background-blend-mode: overlay;
+  background-color: #00000057; }
 
 .front-title-container {
   /* font-size: 10vw; */
   align-self: center;
   justify-self: center;
-  font-size: 12vw; }
+  font-size: 12vw;
+  color: #ffffff;
+  text-transform: capitalize;
+  font-weight: 600; }
 
 .front-title {
   padding: 1%; }
@@ -50,7 +60,7 @@
 
 @media (max-width: 600px) {
   .front-container {
-    min-height: 550px;
+    min-height: 450px;
     grid-template-columns: auto; }
 
   .front-title-container {

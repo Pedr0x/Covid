@@ -20,9 +20,7 @@ const ErrorModal = (props) => {
             <div className={`error-modal-container ${isActive}`}>
                 <div className="error-modal"> 
                     <div className="error-modal-text">
-                        We had an error. Please try again:
-                        
-                        
+                        We had an error:
                         {props.hasError.code ? `code: ${props.hasError.code}` : null}
                         {errorMessage}
                     </div>

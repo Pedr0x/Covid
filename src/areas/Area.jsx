@@ -20,12 +20,10 @@ class Area extends React.Component{
                 infected:null
             },
             allData: [],
-            countryPopulation: null,
             newsData : [],
-            globalCovidData: []
         }
-        this.allCountries =[]
-
+        this.allCountries = [];
+        this.globalCovidData = [];
         this.formatChartData = this.formatChartData.bind(this);
         this.searchCountry = this.searchCountry.bind(this);      
         this.getApisData = this.getApisData.bind(this);     
@@ -36,6 +34,7 @@ class Area extends React.Component{
     }
 
       componentDidMount(){
+        console.log(this.data);
         Promise.all([this.getCountries(), this.getGlobalCovidData()])
             .then(values => { 
                 const [allCountries, globalCovidData] = values;
@@ -46,6 +45,9 @@ class Area extends React.Component{
             .catch(reason => {
                 this.setState({error: reason});
             })
+      }
+      componentDidUpdate(){
+          console.count("updated")
       }
    
         getCountries(){
@@ -70,6 +72,7 @@ class Area extends React.Component{
                 })
             }
       
+        
         getGlobalCovidData(){
             const ENDPOINT = "https://cors-anywhere.herokuapp.com/https://api.covid19api.com/summary";
             return new Promise((resolve, reject ) => {
@@ -99,7 +102,7 @@ class Area extends React.Component{
     }
 
     getDataNew(){
-        console.log(this.data)
+        console.log(this.data);
         const API_LINK = `https://api.covid19api.com/dayone/country/${this.data.country}`;
         const getCovidData =  () => {
             return new Promise((resolve, reject ) => {
@@ -133,13 +136,17 @@ class Area extends React.Component{
                 const newActualData = {
                     Deaths,
                     Recovered, 
-                    Active
+                    Active,
+                    infected:null
                 };
                 const allData = this.formatChartData(res);
+                //deestructure data 
+                const {actualData: oldActualData, country:oldCountry, allData: oldAllData, ...oldItems} = this.data;
                 this.data = {
                     actualData: newActualData,
                     country: Country,
-                    allData
+                    allData,
+                    ...oldItems
                 };
             })
             .then(res =>  this.getApisData())
@@ -155,7 +162,7 @@ class Area extends React.Component{
             const newsEndpoint = 'https://cors-anywhere.herokuapp.com/https://newsapi.org/v2/everything?' +
             `q=coronavirus+${country}&`+
             'sortBy=popularity&' +
-            'apiKey=xe90151a117284afab2e332a31e55bd7a';
+            'apiKey=e90151a117284afab2e332a31e55bd7a';
 
             const getCardData =  () => {
                 return new Promise((resolve, reject ) => {
@@ -179,8 +186,6 @@ class Area extends React.Component{
             })
         }
         
-
-
              const getNewsData =  () => {
                 return new Promise((resolve, reject ) => {
                     const req = new XMLHttpRequest();

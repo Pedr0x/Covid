@@ -39,11 +39,11 @@ class  MainCardGraph extends React.Component {
 	}
 	
       formatDate(value){
-			const cloned = _.cloneDeep(value);
-			cloned.forEach(elem => 
-				elem.Date = moment(elem.Date).format("L")
-			);
-          return cloned;
+		const cloned = _.cloneDeep(value);
+		cloned.forEach(elem => 
+			elem.Date = moment(elem.Date).format("L")
+		);
+		return cloned;
       }
 
     onSelect(date){
@@ -74,9 +74,9 @@ class  MainCardGraph extends React.Component {
 
     selectDate(){
 		const {data} = this.props;
-		if (this.newDates == null){
+		if (!this.newDates){
 				const formattedDates = this.formatDate(this.props.data);
-				this.originalStartDate = data[0] !== undefined ? data[0].Date : this.today;
+				this.originalStartDate = data[0] ? data[0].Date : this.today;
 				this.originalEndDate = data[0] !== undefined ? data[data.length - 1].Date : this.today;
 				return formattedDates;
 		} else {
@@ -97,7 +97,7 @@ class  MainCardGraph extends React.Component {
 	}
 
 	getEndDay(){
-		if (this.endDate !== null){
+		if (this.endDate){
 			return (moment(this.endDate).format("L"))
 		}
 		if (this.props.data[0] !== undefined){

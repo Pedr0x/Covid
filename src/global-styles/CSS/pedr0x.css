@@ -756,6 +756,9 @@ template {
   display: flex;
   flex-direction: column; }
 
+.graph-info-title {
+  font-weight: 600; }
+
 .main-card-data {
   padding: 5%;
   background: #ffffff;
@@ -768,8 +771,6 @@ template {
 
 .main-card-data-list-container {
   padding: 2% 5%;
-  display: flex;
-  flex-direction: column;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); }
 
@@ -841,9 +842,12 @@ template {
     border-radius: 0;
     width: 100%;
     height: 100%; } }
+@media (max-width: 400px) {
+  .main-card-data-list-container {
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); } }
 .search-main-input-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1%;
@@ -851,7 +855,14 @@ template {
 
 .search-main-input {
   padding: 1%;
-  background: #ffffff; }
+  background: #ffffff;
+  font-size: calc(1rem + 1vw); }
+
+.search-input-label {
+  color: white;
+  padding: 1%;
+  font-weight: 600;
+  font-size: calc(0.75rem + 1vw); }
 
 .search-res-container-super {
   position: absolute;
@@ -876,6 +887,7 @@ template {
   text-align: center;
   width: 25%;
   background: #0062cc;
+  background: #000;
   cursor: pointer;
   color: white;
   font-size: calc(0.75rem + 1vw);
@@ -927,13 +939,23 @@ header {
   height: 100vh;
   display: grid;
   background: #e9ecef;
-  grid-template-columns: 2fr 1fr; }
+  grid-template-columns: 2fr 1fr;
+  background-image: url("https://tec.mx/sites/default/files/inline-images/doctores-trajes-biomedicos-covid-19.jpg");
+  background-size: cover  !important;
+  background-repeat: no-repeat  !important;
+  background-position: center center !important;
+  /* background-color: black; */
+  background-blend-mode: overlay;
+  background-color: #00000057; }
 
 .front-title-container {
   /* font-size: 10vw; */
   align-self: center;
   justify-self: center;
-  font-size: 12vw; }
+  font-size: 12vw;
+  color: #ffffff;
+  text-transform: capitalize;
+  font-weight: 600; }
 
 .front-title {
   padding: 1%; }
@@ -975,7 +997,7 @@ header {
 
 @media (max-width: 600px) {
   .front-container {
-    min-height: 550px;
+    min-height: 450px;
     grid-template-columns: auto; }
 
   .front-title-container {
@@ -1018,16 +1040,15 @@ header {
 
 .news-item-container {
   display: grid;
-  padding: 5% 2%;
+  padding: 3% 2%;
   border-radius: 5px;
-  grid-template-columns: 20% 1fr;
   margin: 3% 2%;
   margin: 5%;
   background: white; }
 
 .news-item-container {
   grid-template-columns: 1fr;
-  grid-template-rows: 125px 1fr; }
+  grid-template-rows: auto 125px 1fr; }
 
 .news-img-container {
   display: grid;
@@ -1040,6 +1061,7 @@ header {
 
 .news-item-source {
   padding: 1% 0;
+  font-weight: 600;
   font-size: 16px; }
 
 .news-item-description {
@@ -1111,6 +1133,9 @@ header {
 .error-modal-btn {
   font-size: calc(0.75rem + 1vw); }
 
+@media (max-width: 400px) {
+  .error-modal {
+    margin: 5%; } }
 .support-banner {
   padding: 2%;
   background: #adb5bd; }

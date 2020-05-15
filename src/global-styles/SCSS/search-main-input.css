@@ -1,6 +1,6 @@
 .search-main-input-container {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 1%;
@@ -8,7 +8,14 @@
 
 .search-main-input {
   padding: 1%;
-  background: #ffffff; }
+  background: #ffffff;
+  font-size: calc(1rem + 1vw); }
+
+.search-input-label {
+  color: white;
+  padding: 1%;
+  font-weight: 600;
+  font-size: calc(0.75rem + 1vw); }
 
 .search-res-container-super {
   position: absolute;
@@ -33,6 +40,7 @@
   text-align: center;
   width: 25%;
   background: #0062cc;
+  background: #000;
   cursor: pointer;
   color: white;
   font-size: calc(0.75rem + 1vw);

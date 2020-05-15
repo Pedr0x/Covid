@@ -11,6 +11,8 @@ const GraphInfo = (props) => {
 				    {props.startDate ? props.startDate : null}
 				</h5>
 			</div>
-        </div>)
-}
+		</div>
+	)
+};
+
 export default GraphInfo

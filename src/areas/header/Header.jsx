@@ -10,19 +10,13 @@ const Header = () =>{
                     </h4>
                 </div>
                 <div className="header-items-secondary"> 
-                    <HeaderItem
-                        icon={"search"}
-                    />
-                    <HeaderItem
-                        icon={"public"}
-                    />                    
-                   <HeaderItem
-                        icon={"trending_up"}
-                    />
+                    <HeaderItem icon={"search"}/>                    
+                    <HeaderItem icon={"public"}/>                    
+                   <HeaderItem icon={"trending_up"}/>
                 </div>
             </header>
         </div>
     )
-}
+};
 
 export default Header

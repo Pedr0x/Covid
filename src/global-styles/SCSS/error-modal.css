@@ -39,4 +39,8 @@
 .error-modal-btn {
   font-size: calc(0.75rem + 1vw); }
 
+@media (max-width: 400px) {
+  .error-modal {
+    margin: 5%; } }
+
 /*# sourceMappingURL=error-modal.css.map */

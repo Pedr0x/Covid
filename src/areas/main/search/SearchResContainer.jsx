@@ -5,22 +5,22 @@ const _ = require('lodash');
 
 const SearchResContainer = (props) => {
     if (props.data){
-    return(
-        <div 
-            className={`search-res-container-super ${props.activeContainer}`} 
-        >
-            {props.data.map(elem => 
-                <SearchResItem
-                    key={_.uniqueId()}
-                    callback={props.callback}
-                    country={elem.item.Country}
-                />
-            )}
+        return(
+            <div 
+                className={`search-res-container-super ${props.activeContainer}`} 
+            >
+                {props.data.map(elem => 
+                    <SearchResItem
+                        key={_.uniqueId()}
+                        callback={props.callback}
+                        country={elem.item.Country}
+                    />
+                )}
         </div>
     )
 } else {
       return null
     }
-}
+};
 
 export default SearchResContainer

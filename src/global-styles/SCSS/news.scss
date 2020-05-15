@@ -15,8 +15,8 @@
     @include img;
 	width: 100px;
 	height: 100px;
-
 }
+
 .news-container-title {
 	@include area-subtitle;
 	font-size: $Small-Big;
@@ -30,9 +30,8 @@
 }
 .news-item-container {
     display: grid;
-    padding: 5% 2%;
+    padding: 3% 2%;
     border-radius: $primary-border-radius;
-	grid-template-columns: 20% 1fr;
     margin: 3% 2%;
     margin: 5%;
 	background: white;
@@ -40,7 +39,7 @@
 
 .news-item-container {
 	grid-template-columns: 1fr;
-	grid-template-rows: 125px 1fr;
+	grid-template-rows: auto 125px 1fr;
 }
 
 .news-img-container {
@@ -51,10 +50,11 @@
 .news-item-title {
 	font-weight: 600;
 	text-decoration: none;
-	color: #007bff;
+	color: $blue;
 }
 .news-item-source {
 	padding: 1% 0;
+	font-weight: 600;
 	font-size: $XSmall;
 }
 

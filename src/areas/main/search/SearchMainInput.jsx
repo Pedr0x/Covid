@@ -22,7 +22,6 @@ class SearchMainInput extends React.Component {
           this.getInputdata = this.getInputdata.bind(this);        
           this.normalize = this.normalize.bind(this);        
     }
-      
   
     getInputdata(e){
         this.searchValue = e.target.value;
@@ -31,7 +30,7 @@ class SearchMainInput extends React.Component {
         this.searchResults =  fuse.search(pattern).slice(0,3);
         this.setState({
             upd:true
-        })  
+        });  
       }
 
     normalize(data){

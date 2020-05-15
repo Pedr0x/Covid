@@ -2,18 +2,26 @@
 
 .search-main-input-container {
 	display: flex;
-	flex-direction: row;
-	align-items: center;
+	flex-direction: column;
+		align-items: center;
 	justify-content: center;
 	padding: 1%;
 	background: $black;
 }
 
+
 .search-main-input {
 	padding: 1%;
 	background: $white;
+	font-size: $Normal;
     
-    
+}
+.search-input-label {
+	color: white;
+	padding: 1%;
+	font-weight: 600;
+	font-size: $Small;
+
 }
 
 .search-res-container-super{
@@ -45,6 +53,7 @@
 	text-align: center;
 	width: 25%;
 	background: darken($blue, 10%);
+	background: $black;
 	cursor: pointer;
 	color: white;
 	font-size: $Small;
