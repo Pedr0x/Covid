@@ -31,7 +31,8 @@ class Area extends React.Component{
         this.getCountries = this.getCountries.bind(this);  
         this.resetCountry = this.resetCountry.bind(this);  
         this.getGlobalCovidData = this.getGlobalCovidData.bind(this);  
-        
+        this.getDataNew = this.getDataNew.bind(this);  
+    
     }
 
       componentDidMount(){
@@ -50,7 +51,6 @@ class Area extends React.Component{
             .catch(reason => {
                 this.setState({error: reason});
             })
-            .finally(res => this.setState({loading:false}))
             .finally(res => console.log("promise ended"))
       }
    
