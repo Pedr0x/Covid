@@ -10,9 +10,23 @@ const InfoCard = (props) => {
                 {
                     props.globalCovidData 
                      ? <React.Fragment>
-                            <InfoCardItem label="Deaths" number={globalCovidData.TotalDeaths}/>
-                            <InfoCardItem label="Confirmed" number={globalCovidData.TotalConfirmed}/>
-                            <InfoCardItem label="Recovered" number={globalCovidData.TotalRecovered}/>
+                            <InfoCardItem 
+                                label="Deaths" 
+                                number={globalCovidData.TotalDeaths} 
+                                newData={globalCovidData.NewDeaths}
+                            />
+                            <InfoCardItem 
+                                label="Confirmed"   
+                                number={globalCovidData.TotalConfirmed}
+                                newData={globalCovidData.NewConfirmed}
+
+                                />
+                            <InfoCardItem 
+                                label="Recovered" 
+                                number={globalCovidData.TotalRecovered}
+                                newData={globalCovidData.NewRecovered}
+
+                            />
                      </React.Fragment>
                      : <h2      className="info-card-loading-subtitle">
                          Loading

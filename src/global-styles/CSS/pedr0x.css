@@ -974,10 +974,18 @@ header {
 
 .info-card-item-container {
   padding: 3.5% 3%;
+  display: grid;
+  grid-template-columns: 1fr 1fr; }
+
+.info-card-new {
+  font-size: calc(0.75rem + 1vw);
+  text-align: right;
+  font-size: 16px; }
+
+.info-card-data-container {
   display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between; }
+  justify-self: end;
+  flex-direction: column; }
 
 .info-card-item-container:nth-child(2) .info-card-item-label {
   background: #dc3545; }
@@ -1133,6 +1141,88 @@ header {
 @media (max-width: 400px) {
   .error-modal {
     margin: 5%; } }
+.error-modal-container_active .error-modal {
+  pointer-events: all;
+  transition: 0.2 ease-in; }
+
+.error-modal-container {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  opacity: 0;
+  top: 0px;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  transition: 0.2s;
+  pointer-events: none; }
+
+.error-modal-container_active {
+  background: #0000005e;
+  transition: 0.2s;
+  z-index: 99; }
+
+.error-modal {
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5%;
+  z-index: 3;
+  z-index: 999;
+  position: relative;
+  background: #ffffff;
+  font-weight: 600; }
+
+.error-modal-container_active {
+  opacity: 1;
+  transition: 0.2 ease-in;
+  pointer-events: all; }
+
+.error-modal-btn {
+  font-size: calc(0.75rem + 1vw); }
+
+@media (max-width: 400px) {
+  .error-modal {
+    margin: 5%; } }
+.info-banner-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr; }
+
+.info-banner-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  align-items: center;
+  justify-items: center;
+  background: #ffffff; }
+
+.info-banner-card-title {
+  font-size: calc(0.75rem + 1vw);
+  /* text-align: center; */
+  font-size: 15px;
+  padding: 2%;
+  font-weight: 600; }
+
+.info-banner-card {
+  text-align: center;
+  padding: 3%;
+  width: 100%;
+  display: flex;
+  flex-direction: column; }
+
+.info-banner-card-data {
+  font-size: calc(0.75rem + 1vw);
+  padding: 4%; }
+
+.info-banner-card:nth-child(1) .info-banner-card-title {
+  background: #007bff; }
+
+.info-banner-card:nth-child(2) .info-banner-card-title {
+  background: #dc3545; }
+
+.info-banner-card:nth-child(3) .info-banner-card-title {
+  background: #ffc107; }
+
 .support-banner {
   padding: 2%;
   background: #adb5bd; }

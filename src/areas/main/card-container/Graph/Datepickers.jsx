@@ -15,15 +15,15 @@ const Datepickers = (props) => {
                         onSelect={(date) =>props.selectStart(date)}
                     />
                 </div>
-        <div className="datepicker-container"> 
-            <h4 className="datepicker-title"> Chart End Date</h4>
-            <DatePicker
-                minDate={firstDay}
-                placeholderText={props.placeholderEnd}
-                maxDate={(new Date())}
-                onSelect={(date) =>props.selectEnd(date)}
-            />
-            </div>
+            <div className="datepicker-container"> 
+                <h4 className="datepicker-title"> Chart End Date</h4>
+                <DatePicker
+                    minDate={firstDay}
+                    placeholderText={props.placeholderEnd}
+                    maxDate={(new Date())}
+                    onSelect={(date) =>props.selectEnd(date)}
+                />
+                </div>
         </div>
     )
 }

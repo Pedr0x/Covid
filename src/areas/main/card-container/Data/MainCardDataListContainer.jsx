@@ -7,11 +7,11 @@ const MainCardDataListContainer = (props) => {
         return(
             <React.Fragment>
                 {props.actualData 
-                        ? data.map(elem =>
-                                <MainCardDataListItem key={_.uniqueId() }data={elem}/>
-                            )
-                        : null  
-                    }
+                    ? data.map(elem =>
+                            <MainCardDataListItem key={_.uniqueId() }data={elem}/>
+                        )
+                    : null  
+                }
             </React.Fragment>            
         )
 }

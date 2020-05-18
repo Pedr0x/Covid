@@ -51,7 +51,21 @@
 
 .info-card-item-container {
 	padding: 3.5% 3%;
-	@include flex-row-align-space-between;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+//@include	@include flex-row-align-space-between;
+}
+
+.info-card-new {
+	font-size: $Small;
+	text-align: right;
+	font-size: $XSmall;
+
+}
+.info-card-data-container {
+	display: flex;
+	justify-self: end;
+	flex-direction: column;
 }
 
 .info-card-item-container:nth-child(2) .info-card-item-label{

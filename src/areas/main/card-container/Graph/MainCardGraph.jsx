@@ -38,7 +38,7 @@ class  MainCardGraph extends React.Component {
 		}
 	}
 	
-      formatDate(value){
+	formatDate(value){
 		const cloned = _.cloneDeep(value);
 		cloned.forEach(elem => 
 			elem.Date = moment(elem.Date).format("L")

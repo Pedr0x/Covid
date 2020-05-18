@@ -43,6 +43,7 @@ class SearchMainInput extends React.Component {
         this.setState({
             upd:1
         });
+        
     }
         render(){
             const activeContainer = 

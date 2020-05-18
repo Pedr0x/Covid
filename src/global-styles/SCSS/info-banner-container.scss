@@ -1,0 +1,52 @@
+@import "variables";
+
+.info-banner-container{
+    display:grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+
+.info-banner-container {
+	display: grid;
+	grid-template-columns: 1fr 1fr 1fr;
+	align-items: center;
+    justify-items: center;
+    background: $white;
+}
+
+
+.info-banner-card-title {
+	font-size: calc(0.75rem + 1vw);
+	/* text-align: center; */
+    font-size: 15px;
+    padding: 2%;
+    font-weight:600;
+}
+
+.info-banner-card {
+	text-align: center;
+	padding: 3%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.info-banner-card-data {
+	font-size: calc(0.75rem + 1vw);
+	padding: 4%;
+}
+
+
+.info-banner-card:nth-child(1)  .info-banner-card-title{
+    background: $blue;
+}
+
+.info-banner-card:nth-child(2)  .info-banner-card-title{
+    background: $red;
+}
+
+
+.info-banner-card:nth-child(3)  .info-banner-card-title{
+    background: $yellow;
+}
