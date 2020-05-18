@@ -8,7 +8,6 @@ class Area extends React.Component{
     constructor(props) {
         super(props);
         this.state = { 
-            upd: true,
             error:false,
             loading:false
         };
@@ -32,7 +31,8 @@ class Area extends React.Component{
         this.resetCountry = this.resetCountry.bind(this);  
         this.getGlobalCovidData = this.getGlobalCovidData.bind(this);  
         this.getDataNew = this.getDataNew.bind(this);  
-    
+        this.resolveCountryData = this.resolveCountryData.bind(this);  
+        
     }
 
       componentDidMount(){
@@ -45,15 +45,14 @@ class Area extends React.Component{
                 this.allCountries = allCountries;
                 this.globalCovidData = globalCovidData;
             })
-            .then(res => this.getDataNew())
-            .then(res => this.getApisData())
-            .then(res => console.log("ended"))
+           .then(res => this.resolveCountryData())
+           .then(res => console.log("aft"))
             .catch(reason => {
                 this.setState({error: reason});
             })
             .finally(res => console.log("promise ended"))
       }
-   
+
         getCountries(){
              const COUNTRIES_ENDPOINT = "https://cors-anywhere.herokuapp.com/https://api.covid19api.com/countries"
                 return new Promise((resolve, reject ) => {
@@ -75,8 +74,56 @@ class Area extends React.Component{
                     }
                 })
             }
-      
-        
+            resolveCountryData(){
+                this.getDataNew()
+                    .then(res => {
+                        const {
+                            Deaths,
+                            Recovered, 
+                            Active,
+                            Country
+                        } = res[res.length - 1];
+    
+                        const newActualData = {
+                            Deaths,
+                            Recovered, 
+                            Active,
+                            infected:null
+                        };
+                        const allData = this.formatChartData(res);
+                        //deestructure data 
+                        const {
+                                actualData: oldActualData, 
+                                country:oldCountry, 
+                                allData: oldAllData,
+                                ...oldItems
+                            } = this.data;
+    
+                        this.data = {
+                            actualData: newActualData,
+                            country: Country,
+                            allData,
+                            ...oldItems
+                        };
+                    })
+                    .then(res => this.getApisData())
+                    .then(values => { 
+                        const [infected, newsData] = values;
+                        this.data.actualData.infected = infected;
+                        this.data.newsData = newsData;
+                    })
+                    .then(this.setState({
+                        error:false,
+                    }))
+                    .catch(error => this.setState({
+                        error
+                    })) 
+                    .catch(error => console.log(error))
+                    .finally(res => this.setState({
+                        loading:false
+                    }))
+            }
+    
         getGlobalCovidData(){
             const ENDPOINT = "https://cors-anywhere.herokuapp.com/https://api.covid19api.com/summary";
             return new Promise((resolve, reject ) => {
@@ -125,33 +172,6 @@ class Area extends React.Component{
                     }
                 }
             })
-            .then(res => {
-                const {
-                    Deaths,
-                    Recovered, 
-                    Active,
-                    Country
-                } = res[res.length - 1];
-            
-                const newActualData = {
-                    Deaths,
-                    Recovered, 
-                    Active,
-                    infected:null
-                };
-                const allData = this.formatChartData(res);
-                //deestructure data 
-                const {actualData: oldActualData, country:oldCountry, allData: oldAllData, ...oldItems} = this.data;
-                this.data = {
-                    actualData: newActualData,
-                    country: Country,
-                    allData,
-                    ...oldItems
-                };
-            })
-            .catch(err => err)
-            .finally(res => console.log("ended on new data"))
-
     }
 
         getApisData(){
@@ -172,9 +192,6 @@ class Area extends React.Component{
                         if (req.readyState === 4) {
                             if (req.status === 200) {
                                 const infected = ((this.data.actualData.Active  / req.response[0].population)* 100000).toFixed(2);
-                                console.log(infected);
-                                console.log(this.data.actualData.Active);
-                                console.log(req.response[0].population)
                                 resolve(infected);
                             } else {
                                 reject({
@@ -209,36 +226,19 @@ class Area extends React.Component{
         }
             
             return Promise.all([getCardData(), getNewsData()])
-                .then(values => { 
-                    const [infected, newsData] = values;
-                    this.data.actualData.infected = infected;
-                    this.data.newsData = newsData;
-                    console.log("allapis")
-                    return values
-                })
-                .catch(reason => 
-                    reason
-                )
             }        
     
     searchCountry(data){
         this.data.country = data;
         this.setState({loading:true});
-        this.getDataNew()
-            .then(res => this.getApisData())
-            .then(res => console.log("ended"))
-            .catch(reason => {
-                this.setState({error: reason});
-            })
-            .finally(res => this.setState({loading:false}))
-            .finally(res => console.log("promise ended"))
+        this.resolveCountryData();
     }
 
     resetCountry(){
         //reset on bad request
         this.data.country = "Argentina";
-        this.getDataNew();
-        
+        this.setState({loading:true});
+        this.resolveCountryData();        
     }
     
     render(){
@@ -246,7 +246,6 @@ class Area extends React.Component{
             <div className="Area">
                <ErrorModal 
                     hasError={this.state.error} 
-                    searchCallback={this.getDataNew}
                     resetCountry={this.resetCountry}
                     getCountries={this.getCountries}
                     isLoading={this.state.loading}

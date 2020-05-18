@@ -3,6 +3,8 @@ import Fuse from "fuse.js";
 import SearchInput from "./SearchInput";
 import SearchResContainer from "./SearchResContainer";
 
+import countryList from "./countryList";
+
 class SearchMainInput extends React.Component {
     constructor(props) {
         super(props);
@@ -15,7 +17,9 @@ class SearchMainInput extends React.Component {
               "Country",
               "ISO2",
             ],
-            minMatchCharLength: 1
+            minMatchCharLength: 1,
+            threshold:0.4,
+            distance:3
           };
           this.searchResults = [];
           this.searchValue = "";
@@ -25,9 +29,9 @@ class SearchMainInput extends React.Component {
   
     getInputdata(e){
         this.searchValue = e.target.value;
-        const fuse = new Fuse(this.props.countries, this.options);
+        const fuse = new Fuse(countryList, this.options);
         const pattern = this.searchValue;
-        this.searchResults =  fuse.search(pattern).slice(0,3);
+        this.searchResults =  fuse.search(pattern).slice(0,5);
         this.setState({
             upd:true
         });  
@@ -47,9 +51,9 @@ class SearchMainInput extends React.Component {
                     : "";
             return(
                 <div className="search-main-input-container"> 
-                <SearchInput
-                        getInputdata={this.getInputdata}
-                    />
+                    <SearchInput
+                            getInputdata={this.getInputdata}
+                        />
                     <SearchResContainer 
                         callback={this.normalize}
                         activeContainer={activeContainer}

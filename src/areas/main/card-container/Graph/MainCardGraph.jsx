@@ -91,9 +91,8 @@ class  MainCardGraph extends React.Component {
 		if (this.props.data[0] !== undefined){
 			return moment(this.props.data[0].Date).format("L")
 		}
-		else {
-			return null
-		}
+		return null
+	
 	}
 
 	getEndDay(){
