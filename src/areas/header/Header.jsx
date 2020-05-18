@@ -9,11 +9,11 @@ const Header = () =>{
                         covid tracker
                     </h4>
                 </div>
-                <div className="header-items-secondary"> 
+              {/*   <div className="header-items-secondary"> 
                     <HeaderItem icon={"search"}/>                    
                     <HeaderItem icon={"public"}/>                    
                    <HeaderItem icon={"trending_up"}/>
-                </div>
+                </div> */}
             </header>
         </div>
     )

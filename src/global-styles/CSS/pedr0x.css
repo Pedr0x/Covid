@@ -888,7 +888,8 @@ template {
   cursor: pointer;
   color: white;
   font-size: calc(0.75rem + 1vw);
-  transition: 0.2s; }
+  transition: 0.2s;
+  width: 100%; }
 
 .search-res-item:hover {
   background: #004a99;
